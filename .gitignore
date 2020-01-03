@@ -1,0 +1,12 @@
+/coverage
+/demo/dist
+/es
+/lib
+/css
+/node_modules
+/umd
+npm-debug.log*
+.history
+.DS_Store
+*.log
+fix.md
