@@ -468,7 +468,8 @@ export default class Design extends PureComponent {
   };
 
   // 选中一个组件
-  onSelect = component => {
+  onSelect = (component, editable) => {
+    if (editable === false) return;
     const id = this.getUUIDFromValue(component);
     const { showAddComponentOverlay } = this.state;
 
@@ -487,7 +488,7 @@ export default class Design extends PureComponent {
   // 添加一个新组件
   onAdd = (component, fromSelected) => {
     const { value, settings, globalConfig } = this.props;
-    const { editor, defaultType } = component;
+    const { editor, defaultType, editable } = component;
     const instance = editor.getInitialValue({
       settings,
       globalConfig,
@@ -518,7 +519,7 @@ export default class Design extends PureComponent {
     }
 
     this.trackValueChange(newValue);
-    this.onSelect(instance);
+    this.onSelect(instance, editable);
   };
 
   // 删除一个组件

@@ -47,7 +47,7 @@ class DesignPreviewController extends PureComponent {
     // Design 组件的全局配置
     settings: PropTypes.object,
 
-    // 选中的会掉函数
+    // 选中的回掉函数
     onSelect: PropTypes.func.isRequired,
 
     // 编辑的回调函数
