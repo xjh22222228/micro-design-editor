@@ -3,6 +3,12 @@
 本项目源自 `@zent/design` 作为长期维护。
 
 
+## 安装
+```
+npm i micro-design-editor -S
+```
+
+
 ## Design 微页面编辑组件
 
 微页面编辑组件，用所见即所得(WYSIWG)的方式创建内容丰富的富文本页面。
@@ -233,3 +239,8 @@ export default class NoticeEditor extends DesignEditor {
   }
 }
 ```
+
+
+## Demo
+[demo](./demo/src/index.js)
+
