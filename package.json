@@ -1,6 +1,6 @@
 {
   "name": "design-editor-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "design React component",
   "main": "es/index.js",
   "module": "es/index.js",
