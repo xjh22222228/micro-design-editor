@@ -5,6 +5,7 @@ import DesignPreviewItem from './DesignPreviewItem';
 import DesignPreviewController from './DesignPreviewController';
 import DesignEditorItem from '../editor/DesignEditorItem';
 import DesignEditorAddComponent from '../editor/DesignEditorAddComponent';
+import uuid from '../utils/uuid';
 import { isExpectedDesignType } from '../utils/design-type';
 import { isGrouped } from '../utils/component-group';
 import { DND_PREVIEW_CONTROLLER, DEFAULT_BACKGROUND } from './constants';
@@ -151,7 +152,7 @@ class DesignPreview extends PureComponent {
                     );
                     const PreviewItem = comp.previewItem || DesignPreviewItem;
                     const EditorItem = comp.editorItem || DesignEditorItem;
-                    const id = getUUIDFromValue(v);
+                    const id = getUUIDFromValue(v) || uuid();
                     const selected = id === selectedUUID;
                     const PreviewController = comp.previewController || DesignPreviewController;
                     const draggable = defaultTo(comp.dragable, true);

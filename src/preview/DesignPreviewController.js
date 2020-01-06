@@ -9,7 +9,7 @@ import { ADD_COMPONENT_OVERLAY_POSITION } from '../constants';
 
 class DesignPreviewController extends PureComponent {
   static propTypes = {
-    // 这个组件的唯一标示，不随位置变化而变化
+    // 组件的唯一标识，不随位置变化而变化
     id: PropTypes.string.isRequired,
 
     // 组件的下标，-1 如果不可拖拽

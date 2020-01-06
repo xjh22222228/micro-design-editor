@@ -1,6 +1,6 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/xjh22222228/design-editor-app) ![GitHub](https://img.shields.io/github/license/xjh22222228/design-editor-app)
 
-本项目源自 `@zent/design` 作为长期维护。
+本项目Fork `@zent/design` 作为长期维护。
 
 
 ## 安装
@@ -241,6 +241,9 @@ export default class NoticeEditor extends DesignEditor {
 ```
 
 
-## Demo
+## Demo code
 [demo](./demo/src/index.js)
 
+
+## License
+MIT
