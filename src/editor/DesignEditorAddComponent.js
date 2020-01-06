@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { isFunction, isNumber, noop } from 'lodash';
 import Pop from 'zent/es/pop';
-
 import LazyMap from '../utils/LazyMap';
+import { isFunction, isNumber, noop } from 'lodash';
 import { serializeDesignType } from '../utils/design-type';
 import { splitGroup, isGrouped } from '../utils/component-group';
 

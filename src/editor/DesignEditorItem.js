@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import { findDOMNode } from 'react-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
 
 export default class DesignEditorItem extends PureComponent {
   static propTypes = {

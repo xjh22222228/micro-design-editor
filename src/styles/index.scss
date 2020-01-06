@@ -1,28 +1,19 @@
-@import './design/variable';
-@import './design/preview';
-@import './design/preview-item';
-@import './design/editor-item';
-@import './design/preview-controller';
-@import './design/editor-add-component';
-@import './design/editor';
+@import "./design/variable";
+@import "./design/preview";
+@import "./design/preview-item";
+@import "./design/editor-item";
+@import "./design/preview-controller";
+@import "./design/editor-add-component";
+@import "./design/editor";
+@import "./design/alert";
 
 .zent-design {
   width: 760px;
   text-rendering: optimizelegibility;
   font-family: inherit;
 
-  &__restore-cache-alert {
-    margin-bottom: 10px;
-
-    &-use {
-      text-decoration: none;
-      cursor: pointer;
-      color: #1890ff;
-    }
-  }
-
   &__item-list {
-    min-height: 304px;
+    min-height: 430px;
     padding-bottom: 9px;
 
     &--full-height {

@@ -1,5 +1,4 @@
 import { uniqueId, startsWith, isEmpty } from 'lodash';
-
 import { COMPONENT_GROUP_DESIGN_TYPE } from './design-type';
 
 function DummyComponent() {

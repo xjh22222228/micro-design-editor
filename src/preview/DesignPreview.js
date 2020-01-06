@@ -1,9 +1,6 @@
 import React, { PureComponent } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import { find, some, defaultTo, isFunction, get } from 'lodash';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
 import DesignPreviewItem from './DesignPreviewItem';
 import DesignPreviewController from './DesignPreviewController';
 import DesignEditorItem from '../editor/DesignEditorItem';
@@ -12,6 +9,8 @@ import { isExpectedDesignType } from '../utils/design-type';
 import { isGrouped } from '../utils/component-group';
 import { DND_PREVIEW_CONTROLLER, DEFAULT_BACKGROUND } from './constants';
 import { ADD_COMPONENT_OVERLAY_POSITION } from '../constants';
+import { find, some, defaultTo, isFunction, get } from 'lodash';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 /**
  * DesignPreview 和 config 组件是相互关联的
@@ -154,8 +153,7 @@ class DesignPreview extends PureComponent {
                     const EditorItem = comp.editorItem || DesignEditorItem;
                     const id = getUUIDFromValue(v);
                     const selected = id === selectedUUID;
-                    const PreviewController =
-                      comp.previewController || DesignPreviewController;
+                    const PreviewController = comp.previewController || DesignPreviewController;
                     const draggable = defaultTo(comp.dragable, true);
 
                     return (

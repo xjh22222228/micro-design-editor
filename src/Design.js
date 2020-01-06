@@ -28,9 +28,12 @@
  */
 
 import React, { PureComponent } from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import LazyMap from './utils/LazyMap';
+import * as storage from './utils/storage';
+import uuid from './utils/uuid';
+import DesignPreview from './preview/DesignPreview';
 import {
   assign,
   find,
@@ -38,20 +41,14 @@ import {
   isEmpty,
   isUndefined,
   defaultTo,
-  isFunction,
+  isFunction
 } from 'lodash';
-import Alert from 'zent/es/alert';
-import * as storage from 'zent/es/utils/storage';
-
-import uuid from './utils/uuid';
-
-import DesignPreview from './preview/DesignPreview';
 import {
   getDesignType,
   isExpectedDesignType,
   serializeDesignType,
 } from './utils/design-type';
-import LazyMap from './utils/LazyMap';
+import { findDOMNode } from 'react-dom';
 import { ADD_COMPONENT_OVERLAY_POSITION } from './constants';
 
 const UUID_KEY = '__zent-design-uuid__';
@@ -196,8 +193,7 @@ export default class Design extends PureComponent {
     globalConfig: {},
     confirmUnsavedLeave: true,
     cache: false,
-    cacheRestoreMessage:
-      '提示：在浏览器中发现未提交的内容，是否使用该内容替换当前内容？',
+    cacheRestoreMessage: '提示：在浏览器中发现未提交的内容，是否使用该内容替换当前内容？',
     scrollTopOffset: -10,
     scrollLeftOffset: -10,
     prefix: 'zent',
@@ -253,41 +249,6 @@ export default class Design extends PureComponent {
       // 当 preview 很长时，为了对齐 preview 底部需要的额外空间
       bottomGap: 0,
     };
-  }
-
-  render() {
-    const {
-      className,
-      prefix,
-      preview,
-      cacheRestoreMessage,
-      children,
-    } = this.props;
-    const { showRestoreFromCache, bottomGap } = this.state;
-    const cls = cx(`${prefix}-design`, className);
-
-    return (
-      <div className={cls} style={{ paddingBottom: bottomGap }}>
-        {showRestoreFromCache && (
-          <Alert
-            className={`${prefix}-design__restore-cache-alert`}
-            closable
-            onClose={this.onRestoreCacheAlertClose}
-            type="warning"
-          >
-            {cacheRestoreMessage}
-            <span
-              className={`${prefix}-design__restore-cache-alert-use`}
-              onClick={this.restoreCache}
-            >
-              使用
-            </span>
-          </Alert>
-        )}
-        {this.renderPreview(preview)}
-        {children}
-      </div>
-    );
   }
 
   UNSAFE_componentWillMount() {
@@ -958,18 +919,49 @@ export default class Design extends PureComponent {
           // this.getPreviewProps = implementation;
         },
       },
-
       getUUID: this.getUUIDFromValue,
-
       validateComponentValue: this.validateComponentValue,
-
       setValidation: this.setValidation,
-
       markAsSaved: this.markAsSaved,
-
-      adjustPreviewHeight: this.adjustHeight,
+      adjustPreviewHeight: this.adjustHeight
     };
   })();
+
+  render() {
+    const {
+      className,
+      prefix,
+      preview,
+      cacheRestoreMessage,
+      children
+    } = this.props;
+    const { showRestoreFromCache, bottomGap } = this.state;
+    const cls = cx(`${prefix}-design`, className);
+
+    return (
+      <div className={cls} style={{ paddingBottom: bottomGap }}>
+        {showRestoreFromCache && (
+          <div className="x-alert-design">
+            { cacheRestoreMessage }
+            <span
+              className="x-alert-design__restore-cache-alert-use"
+              onClick={this.restoreCache}
+            >
+              使用
+            </span>
+            <img 
+              className="x-alert-design__close" 
+              src={require('./img/close.svg')} 
+              alt=""
+              onClick={() => { this.setState({ showRestoreFromCache: false })}}
+            />
+          </div>
+        )}
+        {this.renderPreview(preview)}
+        {children}
+      </div>
+    );
+  }
 }
 
 function tagValuesWithUUID(values) {

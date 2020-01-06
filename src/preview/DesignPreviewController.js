@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Pop from 'zent/es/pop';
 import { pick, get } from 'lodash';
 import { Draggable } from 'react-beautiful-dnd';
-import Pop from 'zent/es/pop';
-
 import { DND_PREVIEW_CONTROLLER, DEFAULT_BACKGROUND } from './constants';
 import { ADD_COMPONENT_OVERLAY_POSITION } from '../constants';
 

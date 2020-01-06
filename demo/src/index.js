@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
+import 'zent/css/index.css';
+import '../../src/styles/index.scss';
+import './styles/index.scss';
 import { render } from 'react-dom';
 import { Button, Notify } from 'zent';
-
 import Design from '../../src';
-
 import configConf from './components/config';
 import ConfigEditor from './components/config/ConfigEditor';
 import whitespaceConf from './components/whitespace';
 import lineConf from './components/line';
 import imageAdConf from './components/image-ad';
-
-import 'zent/css/index.css';
-import '../../src/styles/index.scss';
-import './styles/index.scss';
 
 const components = [
   Object.assign({}, configConf, {
@@ -117,7 +114,6 @@ class Demo extends Component {
           <Button type="primary" onClick={this.submit}>
             上架
           </Button>
-          <Button onClick={this.notImplemented}>保存草稿</Button>
           <Button onClick={this.notImplemented}>预览</Button>
           <Button onClick={this.switchMode}>
             {grouped ? '合并显示' : '分组显示'}

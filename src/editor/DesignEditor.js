@@ -1,10 +1,9 @@
 import React, { PureComponent, Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import reorder from '../utils/reorder';
+import shallowEqual from '../utils/shallowEqual';
 import { assign } from 'lodash';
-
-import reorder from 'zent/es/utils/reorder';
-import shallowEqual from 'zent/es/utils/shallowEqual';
 
 const NOT_EVENT_MSG =
   'onInputChange expects an `Event` with { target: { name, value } } as argument';

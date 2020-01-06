@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
-import { isFunction } from 'lodash';
-import scroll from 'zent/es/utils/scroll';
-
+import scroll from '../utils/scroll';
 import offset from '../utils/offset';
+import { isFunction } from 'lodash';
+import { findDOMNode } from 'react-dom';
 
 function scrollNodeToTop(node, offsets) {
   const pos = offset(node);
