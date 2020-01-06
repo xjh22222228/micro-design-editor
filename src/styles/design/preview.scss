@@ -6,6 +6,7 @@
   width: $preview-width;
   min-height: $preview-height;
   position: relative;
+  user-select: none;
 
   .zent-design-add-component-overlay--grouped {
     background: $theme-stroke-9;

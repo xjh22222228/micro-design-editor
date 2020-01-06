@@ -880,13 +880,6 @@ export default class Design extends PureComponent {
     return storage.write(CACHE_KEY, cacheId, undefined);
   }
 
-  // 关闭提示，但是不清楚缓存
-  onRestoreCacheAlertClose = () => {
-    this.setState({
-      showRestoreFromCache: false,
-    });
-  };
-
   // 恢复缓存的数据并删除缓存
   restoreCache = evt => {
     evt.preventDefault();
@@ -953,12 +946,12 @@ export default class Design extends PureComponent {
               className="x-alert-design__close" 
               src={require('./img/close.svg')} 
               alt=""
-              onClick={() => { this.setState({ showRestoreFromCache: false })}}
+              onClick={() => { this.setState({ showRestoreFromCache: false }) }}
             />
           </div>
         )}
-        {this.renderPreview(preview)}
-        {children}
+        { this.renderPreview(preview) }
+        { children }
       </div>
     );
   }

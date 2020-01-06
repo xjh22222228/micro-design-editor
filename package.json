@@ -12,6 +12,7 @@
     "build": "nwb build-react-component --no-demo && npm run build-css --scripts-prepend-node-path",
     "build-npm": "nwb build-react-component --no-demo && npm run build-css --scripts-prepend-node-path && node npmBuild.js",
     "build-css": "./scripts/build-css.sh",
+    "build-gh": "node gh.js",
     "clean": "nwb clean-module && nwb clean-demo && rm -rf css",
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "fs-extra": "^8.1.0",
+    "gh-pages": "^2.1.1",
     "node-sass": "^4.13.0",
     "node-sass-magic-importer": "^5.3.2",
     "nwb": "0.23.x",
