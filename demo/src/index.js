@@ -3,7 +3,7 @@ import 'zent/css/index.css';
 import '../../src/styles/index.scss';
 import './styles/index.scss';
 import { render } from 'react-dom';
-import { Button, Notify } from 'zent';
+import { Button } from 'zent';
 import Design from '../../src';
 import configConf from './components/config';
 import ConfigEditor from './components/config/ConfigEditor';
@@ -100,7 +100,7 @@ class Demo extends Component {
         <Design
           ref={this.saveDesign}
           cache
-          cacheId="zent-design-test"
+          cacheId="micro-design-editor"
           confirmUnsavedLeave={false}
           components={grouped ? groupedComponents : components}
           value={this.state.value}
@@ -111,9 +111,7 @@ class Demo extends Component {
           globalConfig={window._global}
         />
         <div className="design-example-actions">
-          <Button type="primary" onClick={this.submit}>
-            上架
-          </Button>
+          <Button type="primary" onClick={this.submit}>上架</Button>
           <Button onClick={this.notImplemented}>预览</Button>
           <Button onClick={this.switchMode}>
             {grouped ? '合并显示' : '分组显示'}
@@ -124,7 +122,7 @@ class Demo extends Component {
   }
 
   notImplemented() {
-    Notify.error('仅作为演示，功能未开发');
+    alert('仅作为演示，功能未开发');
   }
 
   saveDesign = instance => {
@@ -138,11 +136,11 @@ class Demo extends Component {
   submit = () => {
     this.triggerDesignValidation()
       .then(() => {
-        const data = Design.stripUUID(this.state.value);
-        console.log(data);
+        const data = this.state.value;
+        console.log(JSON.stringify(data, null, 2));
         // submit this.state.value to server
         this.design.markAsSaved();
-        Notify.success('提交成功');
+        alert('保存成功');
       })
       .catch(validations => {
         console.log(validations);

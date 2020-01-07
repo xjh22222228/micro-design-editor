@@ -1,5 +1,3 @@
-/* eslint-disable no-script-url */
-
 /**
  * 设计文档
  *
@@ -9,20 +7,20 @@
  * 根据 `config` 生成的数据进行的。
  * ⚠️注意：`config` 自身有相应的负责渲染预览的模块，这个和 `DesignPreview` 不冲突，可以理解成
  * `config` 可以控制一些预览界面的全局样式。
-
+ *
  * 预览界面中按模块分成很多区域，每个区域是一个 `DesignPreviewItem`，默认的 `DesignPreviewItem`
  * 实现可以由外部覆盖。负责每个区域的事件交互的是另一个组件 `DesignPreviewController`，这个组件
  * 负责处理添加、删除、编辑、选中以及拖拽操作，`DesignPreviewController` 的实现也是可以由外部覆盖的。
  * ⚠️注意：重写的时候所有交互都需要再这个组件里面处理。`DesignPreviewController` 内部会渲染该区域
  * 对应组件的预览模块，预览模块有两个参数：`value` 和 `design`。`value` 是当前的值，`design` 是
  *  `Design` 组件提供的一些操作，一般用不到。
-
+ *
  * 编辑
  * `DesignEditorItem` 是每个区域对应的编辑区域，这个区域的显示隐藏由 `Design` 控制。`DesignEditorItem`
  * 可以由外部覆盖重写。
-
+ *
  * `DesignEditorAddComponent` 这个组件负责枚举所有**可以添加的组件**，暂不支持由外部自定义组件实现。
-
+ *
  * `DesignEditor` 是所有编辑组件的基类，这个类提供了一些常用的方法（例如 `onChange` 事件的处理函数），
  * 在子类里面可以直接使用。
  */
@@ -53,7 +51,6 @@ import { ADD_COMPONENT_OVERLAY_POSITION } from './constants';
 
 const UUID_KEY = '__zent-design-uuid__';
 const CACHE_KEY = '__zent-design-cache-storage__';
-
 const hasValidateError = v => !isEmpty(v[Object.keys(v)[0]]);
 
 export default class Design extends PureComponent {
@@ -183,7 +180,7 @@ export default class Design extends PureComponent {
 
     className: PropTypes.string,
 
-    prefix: PropTypes.string,
+    prefix: PropTypes.string
   };
 
   static defaultProps = {
@@ -196,7 +193,7 @@ export default class Design extends PureComponent {
     cacheRestoreMessage: '提示：在浏览器中发现未提交的内容，是否使用该内容替换当前内容？',
     scrollTopOffset: -10,
     scrollLeftOffset: -10,
-    prefix: 'zent',
+    prefix: 'zent'
   };
 
   constructor(props) {
@@ -730,7 +727,9 @@ export default class Design extends PureComponent {
 
   setUUIDForValue(value, id) {
     if (value) {
-      value[UUID_KEY] = id;
+      Object.setPrototypeOf(value, {
+        [UUID_KEY]: id
+      });
     }
 
     return value;
@@ -904,12 +903,9 @@ export default class Design extends PureComponent {
     return {
       injections: {
         getPreviewProps: (/* implementation */) => {
-          // eslint-disable-next-line
           console.warn(
             'Design injections are no longer supported, use `settings` and `onSettingsChange` instead.'
           );
-
-          // this.getPreviewProps = implementation;
         },
       },
       getUUID: this.getUUIDFromValue,
@@ -960,7 +956,9 @@ export default class Design extends PureComponent {
 function tagValuesWithUUID(values) {
   values.forEach(v => {
     if (!v[UUID_KEY]) {
-      v[UUID_KEY] = uuid();
+      Object.setPrototypeOf(v, {
+        [UUID_KEY]: uuid()
+      });
     }
   });
 }
