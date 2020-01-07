@@ -1,9 +1,12 @@
-import { has, isPlainObject, isArray } from 'lodash';
+import { has, isPlainObject, isArray, cloneDeep } from 'lodash';
 
 const UUID_KEY_PATTERN = /__.+uuid__/i;
 const OLD_KEY = 'zent-design-uuid';
 
 export default function stripUUID(value) {
+  // https://github.com/xjh22222228/micro-design-editor/issues/3
+  value = cloneDeep(value);
+
   if (isPlainObject(value)) {
     // eslint-disable-next-line
     for (const key in value) {
