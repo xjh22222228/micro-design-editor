@@ -9,22 +9,19 @@ export default class DesignEditorItem extends PureComponent {
 
     disabled: PropTypes.bool,
 
-    prefix: PropTypes.string,
-
     className: PropTypes.string,
   };
 
   static defaultProps = {
-    disabled: false,
-    prefix: 'zent',
+    disabled: false
   };
 
   render() {
-    const { disabled, prefix, className } = this.props;
+    const { disabled, className } = this.props;
 
     return (
-      <div className={cx(`${prefix}-design-editor-item`, className)}>
-        {disabled && <div className={`${prefix}-design__disabled-mask`} />}
+      <div className={cx('zent-design-editor-item', className)}>
+        {disabled && <div className="zent-design__disabled-mask" />}
         {this.props.children}
       </div>
     );

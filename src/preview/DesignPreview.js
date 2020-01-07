@@ -23,8 +23,6 @@ class DesignPreview extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
 
-    prefix: PropTypes.string,
-
     design: PropTypes.object.isRequired,
 
     components: PropTypes.array.isRequired,
@@ -74,7 +72,6 @@ class DesignPreview extends PureComponent {
     background: '#f9f9f9',
     disabled: false,
     appendableComponents: [],
-    prefix: 'zent',
   };
 
   previewItems = {};
@@ -106,13 +103,12 @@ class DesignPreview extends PureComponent {
       onAdd,
       onMove,
       className,
-      prefix,
       globalConfig,
       disabled,
       footer,
     } = this.props;
     const isComponentsGrouped = isGrouped(appendableComponents);
-    const cls = cx(`${prefix}-design-preview`, className);
+    const cls = cx('zent-design-preview', className);
     const hasAppendableComponent = appendableComponents.length > 0;
 
     return (
@@ -127,10 +123,10 @@ class DesignPreview extends PureComponent {
             ),
           }}
         >
-          {disabled && <div className={`${prefix}-design__disabled-mask`} />}
+          {disabled && <div className="zent-design__disabled-mask" />}
 
           <Droppable
-            droppableId={`${prefix}-design-preview-list`}
+            droppableId="zent-design-preview-list"
             type={DND_PREVIEW_CONTROLLER}
             direction="vertical"
           >
@@ -141,8 +137,8 @@ class DesignPreview extends PureComponent {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className={cx(`${prefix}-design__item-list`, {
-                    [`${prefix}-design__item-list--full-height`]: !hasAppendableComponent,
+                  className={cx('zent-design__item-list', {
+                    ['zent-design__item-list--full-height']: !hasAppendableComponent,
                   })}
                 >
                   {value.map(v => {
@@ -159,13 +155,11 @@ class DesignPreview extends PureComponent {
 
                     return (
                       <PreviewItem
-                        prefix={prefix}
                         key={id}
                         id={id}
                         ref={this.savePreviewItem(id)}
                       >
                         <PreviewController
-                          prefix={prefix}
                           value={v}
                           globalConfig={globalConfig}
                           settings={settings}
@@ -197,7 +191,6 @@ class DesignPreview extends PureComponent {
 
                         {selected && !showAddComponentOverlay && (
                           <EditorItem
-                            prefix={prefix}
                             disabled={disabled}
                             ref={this.saveEditorItem(id)}
                           >
@@ -212,7 +205,6 @@ class DesignPreview extends PureComponent {
                               design={design}
                               validation={validations[id] || {}}
                               showError={showError}
-                              prefix={prefix}
                             />
                           </EditorItem>
                         )}
@@ -220,23 +212,21 @@ class DesignPreview extends PureComponent {
                         {selected && showAddComponentOverlay && (
                           <DesignEditorItem
                             ref={this.saveEditorItem(id)}
-                            prefix={prefix}
                             className={cx(
-                              `${prefix}-design-add-component-overlay`,
+                              'zent-design-add-component-overlay',
                               {
-                                [`${prefix}-design-add-component-overlay--top`]:
+                                ['zent-design-add-component-overlay--top']:
                                   addComponentOverlayPosition ===
                                   ADD_COMPONENT_OVERLAY_POSITION.TOP,
-                                [`${prefix}-design-add-component-overlay--bottom`]:
+                                ['zent-design-add-component-overlay--bottom']:
                                   addComponentOverlayPosition ===
                                   ADD_COMPONENT_OVERLAY_POSITION.BOTTOM,
-                                [`${prefix}-design-add-component-overlay--grouped`]: isComponentsGrouped,
-                                [`${prefix}-design-add-component-overlay--mixed`]: !isComponentsGrouped,
+                                ['zent-design-add-component-overlay--grouped']: isComponentsGrouped,
+                                ['zent-design-add-component-overlay--mixed']: !isComponentsGrouped,
                               }
                             )}
                           >
                             <DesignEditorAddComponent
-                              prefix={prefix}
                               fromSelected
                               componentInstanceCount={componentInstanceCount}
                               components={appendableComponents}
@@ -255,13 +245,12 @@ class DesignPreview extends PureComponent {
 
           {hasAppendableComponent && (
             <div
-              className={cx(`${prefix}-design__add`, {
-                [`${prefix}-design__add--grouped`]: isComponentsGrouped,
-                [`${prefix}-design__add--mixed`]: !isComponentsGrouped,
+              className={cx('zent-design__add', {
+                ['zent-design__add--grouped']: isComponentsGrouped,
+                ['zent-design__add--mixed']: !isComponentsGrouped,
               })}
             >
               <DesignEditorAddComponent
-                prefix={prefix}
                 componentInstanceCount={componentInstanceCount}
                 components={appendableComponents}
                 onAddComponent={onAddComponent}

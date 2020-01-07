@@ -71,13 +71,7 @@ class DesignPreviewController extends PureComponent {
     globalConfig: PropTypes.object,
 
     // preview 额外的 props
-    previewProps: PropTypes.object,
-
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'zent',
+    previewProps: PropTypes.object
   };
 
   render() {
@@ -92,7 +86,6 @@ class DesignPreviewController extends PureComponent {
       component: PreviewComponent,
       previewProps,
       settings,
-      prefix,
       id,
       index,
       allowHoverEffects,
@@ -104,11 +97,11 @@ class DesignPreviewController extends PureComponent {
       'settings',
     ]);
     const getClassName = highlight =>
-      cx(`${prefix}-design-preview-controller`, {
-        [`${prefix}-design-preview-controller--editable`]: editable,
-        [`${prefix}-design-preview-controller--selected`]: isSelected,
-        [`${prefix}-design-preview-controller--highlight`]: highlight,
-        [`${prefix}-design-preview-controller--dragable`]: dragable,
+      cx('zent-design-preview-controller', {
+        ['zent-design-preview-controller--editable']: editable,
+        ['zent-design-preview-controller--selected']: isSelected,
+        ['zent-design-preview-controller--highlight']: highlight,
+        ['zent-design-preview-controller--dragable']: dragable,
       });
 
     const tree = dragable ? (
@@ -138,10 +131,9 @@ class DesignPreviewController extends PureComponent {
                     DEFAULT_BACKGROUND
                   ),
                 }}
-                className={`${prefix}-design-preview-controller__drag-handle`}
+                className="zent-design-preview-controller__drag-handle"
               >
                 <PreviewComponent
-                  prefix={prefix}
                   {...previewProps}
                   {...props}
                 />
@@ -149,20 +141,18 @@ class DesignPreviewController extends PureComponent {
               {provided.placeholder}
 
               {showButtons && canDelete && (
-                <DeleteButton prefix={prefix} onDelete={this.onDelete} />
+                <DeleteButton onDelete={this.onDelete} />
               )}
               {showButtons && canInsert && (
                 <AddButton
-                  prefix={prefix}
                   onAdd={this.onPrepend}
-                  className={`${prefix}-design-preview-controller__prepend`}
+                  className="zent-design-preview-controller__prepend"
                 />
               )}
               {showButtons && canInsert && (
                 <AddButton
-                  prefix={prefix}
                   onAdd={this.onAppend}
-                  className={`${prefix}-design-preview-controller__append`}
+                  className="zent-design-preview-controller__append"
                 />
               )}
             </div>
@@ -175,29 +165,24 @@ class DesignPreviewController extends PureComponent {
         onClick={this.onSelect}
       >
         <div
-          className={cx(
-            `${prefix}-design-preview-controller__drag-handle`,
-            `${prefix}-design-preview-controller__drag-handle--inactive`
-          )}
+          className="zent-design-preview-controller__drag-handle zent-design-preview-controller__drag-handle--inactive"
         >
-          <PreviewComponent prefix={prefix} {...previewProps} {...props} />
+          <PreviewComponent {...previewProps} {...props} />
         </div>
 
         {configurable && canDelete && (
-          <DeleteButton prefix={prefix} onDelete={this.onDelete} />
+          <DeleteButton onDelete={this.onDelete} />
         )}
         {configurable && canInsert && (
           <AddButton
-            prefix={prefix}
             onAdd={this.onPrepend}
-            className={`${prefix}-design-preview-controller__prepend`}
+            className="zent-design-preview-controller__prepend"
           />
         )}
         {configurable && canInsert && (
           <AddButton
-            prefix={prefix}
             onAdd={this.onAppend}
-            className={`${prefix}-design-preview-controller__append`}
+            className="zent-design-preview-controller__append"
           />
         )}
       </div>
@@ -243,7 +228,7 @@ class DesignPreviewController extends PureComponent {
   }
 }
 
-function DeleteButton({ prefix, onDelete }) {
+function DeleteButton({ onDelete }) {
   return (
     <Pop
       content="确定删除？"
@@ -251,60 +236,54 @@ function DeleteButton({ prefix, onDelete }) {
       position="left-center"
       centerArrow
       onConfirm={onDelete}
-      wrapperClassName={`${prefix}-design-preview-controller__action-btn-delete`}
+      wrapperClassName="zent-design-preview-controller__action-btn-delete"
     >
-      <IconDelete prefix={prefix} onClick={stopEventPropagation} />
+      <IconDelete onClick={stopEventPropagation} />
     </Pop>
   );
 }
 
-function AddButton({ prefix, onAdd, className }) {
+function AddButton({ onAdd, className }) {
   return (
     <div
       className={cx(
-        `${prefix}-design-preview-controller__action-btn-add-container`,
+        'zent-design-preview-controller__action-btn-add-container',
         className
       )}
     >
       <a
-        className={`${prefix}-design-preview-controller__action-btn-add`}
+        className={'zent-design-preview-controller__action-btn-add'}
         onClick={onAdd}
       >
-        <IconAdd prefix={prefix} />
+        <IconAdd />
       </a>
-      <AddMarker prefix={prefix} />
+      <AddMarker />
     </div>
   );
 }
 
-function AddMarker({ prefix }) {
+function AddMarker() {
   return (
-    <div className={`${prefix}-design-preview-controller__add-marker`}>
+    <div className="zent-design-preview-controller__add-marker">
       <i
-        className={cx(
-          `${prefix}-design-preview-controller__add-marker-circle`,
-          `${prefix}-design-preview-controller__add-marker-circle--left`
-        )}
+        className="zent-design-preview-controller__add-marker-circle zent-design-preview-controller__add-marker-circle--left"
       />
-      <div className={`${prefix}-design-preview-controller__add-marker-line`} />
+      <div className="zent-design-preview-controller__add-marker-line" />
       <i
-        className={cx(
-          `${prefix}-design-preview-controller__add-marker-circle`,
-          `${prefix}-design-preview-controller__add-marker-circle--right`
-        )}
+        className="zent-design-preview-controller__add-marker-circle zent-design-preview-controller__add-marker-circle--right"
       />
     </div>
   );
 }
 
-function IconAdd({ prefix }) {
+function IconAdd() {
   return (
     <svg
       width="17"
       height="17"
       viewBox="0 0 17 17"
       xmlns="http://www.w3.org/2000/svg"
-      className={`${prefix}-design-preview-controller__icon-add`}
+      className="zent-design-preview-controller__icon-add"
     >
       <g fill="none" fillRule="evenodd">
         <circle cx="8.5" cy="8.5" r="8.5" />
@@ -316,14 +295,14 @@ function IconAdd({ prefix }) {
 
 class IconDelete extends PureComponent {
   render() {
-    const { prefix, onClick } = this.props;
+    const { onClick } = this.props;
     return (
       <svg
         width="20"
         height="20"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"
-        className={`${prefix}-design-preview-controller__icon-delete`}
+        className="zent-design-preview-controller__icon-delete"
         onClick={onClick}
       >
         <g fill="none" fillRule="evenodd">

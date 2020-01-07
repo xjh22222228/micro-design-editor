@@ -28,13 +28,13 @@ export default class ImageAdEditor extends DesignEditor {
   }
 
   render() {
-    const { prefix, showError, validation, value } = this.props;
+    const { showError, validation, value } = this.props;
     const { localImage } = this.state;
     const imageErrors = validation.images;
     const allowAddImage = this.isAddImageEntryAllowed();
 
     return (
-      <div className={`${prefix}-design-component-image-ad-editor`}>
+      <div className={`zent-design-component-image-ad-editor`}>
         <ControlGroup
           label="显示大小:"
           showError={showError || this.getMetaProperty('size', 'touched')}
@@ -50,7 +50,7 @@ export default class ImageAdEditor extends DesignEditor {
           </RadioGroup>
         </ControlGroup>
         <Droppable
-          droppableId={`${prefix}-design-component-image-ad-editor__entry-list`}
+          droppableId={`zent-design-component-image-ad-editor__entry-list`}
           type={IMAGE_AD_DND_TYPE}
           direction="vertical"
         >
@@ -58,7 +58,7 @@ export default class ImageAdEditor extends DesignEditor {
             return (
               <ul
                 ref={provided.innerRef}
-                className={`${prefix}-design-component-image-ad-editor__entry-list`}
+                className={`zent-design-component-image-ad-editor__entry-list`}
               >
                 {value.images.map(img => {
                   const imageId = img[IMAGE_AD_ENTRY_UUID_KEY];
@@ -66,7 +66,7 @@ export default class ImageAdEditor extends DesignEditor {
                   return (
                     <li
                       key={imageId}
-                      className={`${prefix}-design-component-image-ad-editor__entry`}
+                      className={`zent-design-component-image-ad-editor__entry`}
                     >
                       <ImageEntry
                         prefix={prefix}
@@ -82,21 +82,21 @@ export default class ImageAdEditor extends DesignEditor {
                       {!snapshot.isDraggingOver && (
                         <Icon
                           type="close-circle"
-                          className={`${prefix}-design-component-image-ad-editor__entry-close-btn`}
+                          className={`zent-design-component-image-ad-editor__entry-close-btn`}
                           onClick={this.removeImageEntry(imageId)}
                         />
                       )}
                       {!snapshot.isDraggingOver && allowAddImage && (
                         <Icon
                           type="plus"
-                          className={`${prefix}-design-component-image-ad-editor__entry-prepend-btn`}
+                          className={`zent-design-component-image-ad-editor__entry-prepend-btn`}
                           onClick={this.prependImageEntry(imageId)}
                         />
                       )}
                       {!snapshot.isDraggingOver && allowAddImage && (
                         <Icon
                           type="plus"
-                          className={`${prefix}-design-component-image-ad-editor__entry-append-btn`}
+                          className={`zent-design-component-image-ad-editor__entry-append-btn`}
                           onClick={this.appendImageEntry(imageId)}
                         />
                       )}
@@ -110,7 +110,7 @@ export default class ImageAdEditor extends DesignEditor {
         </Droppable>
         {allowAddImage && (
           <a
-            className={`${prefix}-design-component-image-ad-editor__add-entry-btn`}
+            className={`zent-design-component-image-ad-editor__add-entry-btn`}
           >
             <b>+</b>添加一个广告
             <input
@@ -122,7 +122,7 @@ export default class ImageAdEditor extends DesignEditor {
             />
           </a>
         )}
-        <div className={`${prefix}-design-component-image-ad-editor__hint`}>
+        <div className={`zent-design-component-image-ad-editor__hint`}>
           最多添加 {IMAGE_AD_LIMIT} 个广告，拖动选中的图片广告可对其排序
         </div>
       </div>

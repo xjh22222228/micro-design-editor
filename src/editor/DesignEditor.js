@@ -207,8 +207,7 @@ export class ControlGroup extends PureComponent {
     focusOnLabelClick: PropTypes.bool,
 
     required: PropTypes.bool,
-    className: PropTypes.string,
-    prefix: PropTypes.string,
+    className: PropTypes.string
   };
 
   static defaultProps = {
@@ -216,14 +215,12 @@ export class ControlGroup extends PureComponent {
     showError: false,
     showLabel: true,
     focusOnLabelClick: true,
-    error: '',
-    prefix: 'zent',
+    error: ''
   };
 
   render() {
     const {
       className,
-      prefix,
       showError,
       error,
       showLabel,
@@ -239,38 +236,34 @@ export class ControlGroup extends PureComponent {
 
     return (
       <div
-        className={cx(`${prefix}-design-editor__control-group`, className, {
+        className={cx('zent-design-editor__control-group', className, {
           'has-error': errorVisible,
         })}
       >
         {React.createElement(
           focusOnLabelClick ? 'label' : 'div',
           {
-            className: `${prefix}-design-editor__control-group-container`,
+            className: 'zent-design-editor__control-group-container',
           },
           showLabel ? (
             <div
               className={cx(
-                `${prefix}-design-editor__control-group-label`,
+                'zent-design-editor__control-group-label',
                 labelAlign &&
-                  `${prefix}-design-editor__control-group-label--${labelAlign}`
+                  `zent-design-editor__control-group-label--${labelAlign}`
               )}
             >
               {required && (
-                <span
-                  className={`${prefix}-design-editor__control-group-required-star`}
-                >
-                  *
-                </span>
+                <span className="zent-design-editor__control-group-required-star">*</span>
               )}
               {label}
             </div>
           ) : null,
-          <div className={`${prefix}-design-editor__control-group-control`}>
+          <div className="zent-design-editor__control-group-control">
             {children}
             {helpDesc && (
               <div
-                className={`${prefix}-design-editor__control-group-help-desc`}
+                className="zent-design-editor__control-group-help-desc"
               >
                 {helpDesc}
               </div>
@@ -278,7 +271,7 @@ export class ControlGroup extends PureComponent {
           </div>
         )}
         {errorVisible && (
-          <div className={`${prefix}-design-editor__control-group-error`}>
+          <div className="zent-design-editor__control-group-error">
             {error}
           </div>
         )}

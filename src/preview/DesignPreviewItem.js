@@ -18,18 +18,13 @@ function scrollNodeToTop(node, offsets) {
 
 export default class DesignPreviewItem extends PureComponent {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    prefix: PropTypes.string,
-  };
-
-  static defaultProps = {
-    prefix: 'zent',
+    children: PropTypes.node.isRequired
   };
 
   render() {
-    const { children, prefix } = this.props;
+    const { children } = this.props;
 
-    return <div className={`${prefix}-design-preview-item`}>{children}</div>;
+    return <div className="zent-design-preview-item">{ children }</div>;
   }
 
   scrollTop(offsets) {

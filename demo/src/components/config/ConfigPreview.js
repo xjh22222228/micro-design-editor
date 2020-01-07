@@ -6,17 +6,15 @@ export default class ConfigPreview extends PureComponent {
     value: PropTypes.object,
 
     // 用来和 Design 交互
-    design: PropTypes.object,
-
-    prefix: PropTypes.string,
+    design: PropTypes.object
   };
 
   render() {
-    const { value, prefix } = this.props;
+    const { value } = this.props;
 
     return (
-      <div className={`${prefix}-design-component-config-preview`}>
-        <div className={`${prefix}-design-component-config-preview__title`}>
+      <div className={`zent-design-component-config-preview`}>
+        <div className={`zent-design-component-config-preview__title`}>
           {value.title}
         </div>
       </div>

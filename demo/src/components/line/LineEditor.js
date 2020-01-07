@@ -9,22 +9,22 @@ const DEFAULT_COLOR = '#e5e5e5';
 
 export default class LineEditor extends DesignEditor {
   render() {
-    const { prefix, value, showError, validation } = this.props;
+    const { value, showError, validation } = this.props;
 
     return (
-      <div className={`${prefix}-design-component-line-editor`}>
+      <div className={`zent-design-component-line-editor`}>
         <ControlGroup
           label="颜色:"
           showError={showError || this.getMetaProperty('color', 'touched')}
           error={validation.color}
         >
           <ColorPicker
-            className={`${prefix}-design-component-line-editor_color-select`}
+            className={`zent-design-component-line-editor_color-select`}
             color={value.color}
             onChange={this.onColorChange}
           />
           <span
-            className={`${prefix}-design-component-line-editor_color-reset`}
+            className={`zent-design-component-line-editor_color-reset`}
             onClick={this.onColorReset}
           >
             重置

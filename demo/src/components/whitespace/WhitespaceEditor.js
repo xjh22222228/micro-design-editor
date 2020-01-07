@@ -5,13 +5,13 @@ import { DesignEditor, ControlGroup } from '../../../../src/editor/DesignEditor'
 
 export default class WhitespaceEditor extends DesignEditor {
   render() {
-    const { value, prefix } = this.props;
+    const { value } = this.props;
 
     return (
-      <div className={`${prefix}-design-component-whitespace-editor`}>
+      <div className={`zent-design-component-whitespace-editor`}>
         <ControlGroup
           label="空白高度:"
-          className={`${prefix}-design-component-whitespace-editor__height`}
+          className={`zent-design-component-whitespace-editor__height`}
         >
           <Slider
             min={10}

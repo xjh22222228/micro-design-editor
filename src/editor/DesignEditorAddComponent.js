@@ -15,14 +15,11 @@ export default class DesignEditorAddComponent extends PureComponent {
 
     onAddComponent: PropTypes.func.isRequired,
 
-    fromSelected: PropTypes.bool,
-
-    prefix: PropTypes.string,
+    fromSelected: PropTypes.bool
   };
 
   static defaultProps = {
-    fromSelected: false,
-    prefix: 'zent',
+    fromSelected: false
   };
 
   state = {
@@ -48,7 +45,7 @@ export default class DesignEditorAddComponent extends PureComponent {
   };
 
   render() {
-    const { components, prefix, componentInstanceCount } = this.props;
+    const { components, componentInstanceCount } = this.props;
     const { popVisibleMap } = this.state;
 
     if (!components || !components.length) {
@@ -60,20 +57,15 @@ export default class DesignEditorAddComponent extends PureComponent {
     }
 
     return (
-      <div
-        className={`${prefix}-design-editor-add-component ${prefix}-design-editor-add-component--mixed`}
-      >
-        <div className={`${prefix}-design-editor-add-component__mixed-title`}>
-          添加内容
-        </div>
-        <div className={`${prefix}-design-editor-add-component__mixed-list`}>
+      <div className="zent-design-editor-add-component zent-design-editor-add-component--mixed">
+        <div className="zent-design-editor-add-component__mixed-title">添加内容</div>
+        <div className="zent-design-editor-add-component__mixed-list">
           {components.map(c => {
             const { type } = c;
             const key = serializeDesignType(type);
 
             return (
               <ComponentButton
-                prefix={prefix}
                 type="mixed"
                 key={key}
                 component={c}
@@ -90,17 +82,14 @@ export default class DesignEditorAddComponent extends PureComponent {
   }
 
   renderGrouped() {
-    const { components, prefix, componentInstanceCount } = this.props;
+    const { components, componentInstanceCount } = this.props;
     const { popVisibleMap } = this.state;
     const groups = splitGroup(components);
 
     return (
-      <div
-        className={`${prefix}-design-editor-add-component ${prefix}-design-editor-add-component--grouped`}
-      >
+      <div className="zent-design-editor-add-component zent-design-editor-add-component--grouped">
         {groups.map(g => (
           <ComponentGroup
-            prefix={prefix}
             key={g.group.name}
             group={g.group}
             components={g.components}
@@ -116,7 +105,6 @@ export default class DesignEditorAddComponent extends PureComponent {
 }
 
 function ComponentGroup({
-  prefix,
   group,
   components,
   onAdd,
@@ -125,18 +113,15 @@ function ComponentGroup({
   popVisibleMap,
 }) {
   return (
-    <div className={`${prefix}-design-editor-add-component__grouped`}>
-      <p className={`${prefix}-design-editor-add-component__grouped-title`}>
-        {group.name}
-      </p>
-      <div className={`${prefix}-design-editor-add-component__grouped-list`}>
+    <div className="zent-design-editor-add-component__grouped">
+      <p className="zent-design-editor-add-component__grouped-title">{ group.name }</p>
+      <div className="zent-design-editor-add-component__grouped-list">
         {components.map(c => {
           const { type } = c;
           const key = serializeDesignType(type);
 
           return (
             <ComponentButton
-              prefix={prefix}
               key={key}
               type="grouped"
               component={c}
@@ -154,7 +139,6 @@ function ComponentGroup({
 
 function ComponentButton(props) {
   const {
-    prefix,
     component,
     componentInstanceCount,
     onAdd,
@@ -177,13 +161,13 @@ function ComponentButton(props) {
       position="top-center"
       mouseLeaveDelay={100}
       mouseEnterDelay={300}
-      className={`${prefix}-design-editor-add-component-pop`}
-      wrapperClassName={`${prefix}-design-editor-add-component-btn-wrapper ${prefix}-design-editor-add-component__${type}-btn-wrapper`}
+      className="zent-design-editor-add-component-pop"
+      wrapperClassName={`zent-design-editor-add-component-btn-wrapper zent-design-editor-add-component__${type}-btn-wrapper`}
     >
       <a
         onClick={onAdd(component)}
-        className={cx(`${prefix}-design-editor-add-component__${type}-btn`, {
-          [`${prefix}-design-editor-add-component__${type}-btn--disabled`]: disabled,
+        className={cx(`zent-design-editor-add-component__${type}-btn`, {
+          [`zent-design-editor-add-component__${type}-btn--disabled`]: disabled,
         })}
         disabled={disabled}
       >

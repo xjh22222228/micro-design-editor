@@ -10,7 +10,6 @@ import { IMAGE_AD_ENTRY_UUID_KEY, IMAGE_AD_DND_TYPE } from './constants';
 
 export class ImageEntry extends Component {
   static propTypes = {
-    prefix: PropTypes.string,
     imageId: PropTypes.string,
     imageUrl: PropTypes.string,
     linkUrl: PropTypes.string,
@@ -24,7 +23,7 @@ export class ImageEntry extends Component {
   };
 
   render() {
-    const { imageId, imageUrl, linkTitle, linkUrl, error, prefix } = this.props;
+    const { imageId, imageUrl, linkTitle, linkUrl, error } = this.props;
     const { localImage } = this.state;
 
     return (
@@ -32,21 +31,21 @@ export class ImageEntry extends Component {
         {provided => (
           <div>
             <div
-              className={`${prefix}-design-component-image-ad-editor__image-entry`}
+              className={`zent-design-component-image-ad-editor__image-entry`}
               ref={provided.innerRef}
               style={provided.draggableStyle}
               {...provided.dragHandleProps}
             >
               <div
-                className={`${prefix}-design-component-image-ad-editor__image-entry-image-container`}
+                className={`zent-design-component-image-ad-editor__image-entry-image-container`}
               >
                 <img src={imageUrl} alt={linkTitle} />
                 <div
                   className={cx(
-                    `${prefix}-design-component-image-ad-editor__image-entry-image-upload`,
+                    `zent-design-component-image-ad-editor__image-entry-image-upload`,
                     {
-                      [`${prefix}-design-component-image-ad-editor__image-entry-image-upload--has-image`]: imageUrl,
-                      [`${prefix}-design-component-image-ad-editor__image-entry-image-upload--no-image`]: !imageUrl,
+                      [`zent-design-component-image-ad-editor__image-entry-image-upload--has-image`]: imageUrl,
+                      [`zent-design-component-image-ad-editor__image-entry-image-upload--no-image`]: !imageUrl,
                     }
                   )}
                 >
@@ -67,16 +66,16 @@ export class ImageEntry extends Component {
                 </div>
               </div>
               <div
-                className={`${prefix}-design-component-image-ad-editor__image-entry-controls`}
+                className={`zent-design-component-image-ad-editor__image-entry-controls`}
               >
                 <div
-                  className={`${prefix}-design-component-image-ad-editor__image-entry-image-control`}
+                  className={`zent-design-component-image-ad-editor__image-entry-image-control`}
                 >
                   <label>标题:</label>
                   <Input value={linkTitle} onChange={this.onTitleChange} />
                 </div>
                 <div
-                  className={`${prefix}-design-component-image-ad-editor__image-entry-image-control`}
+                  className={`zent-design-component-image-ad-editor__image-entry-image-control`}
                 >
                   <label>链接:</label>
                   <Input value={linkUrl} onChange={this.onUrlChange} />
@@ -84,7 +83,7 @@ export class ImageEntry extends Component {
               </div>
               {error && (
                 <div
-                  className={`${prefix}-design-component-image-ad-editor__image-entry-error`}
+                  className={`zent-design-component-image-ad-editor__image-entry-error`}
                 >
                   {error}
                 </div>

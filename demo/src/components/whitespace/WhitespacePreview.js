@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 export default class WhitespacePreview extends PureComponent {
   static propTypes = {
-    value: PropTypes.object,
-    prefix: PropTypes.string,
+    value: PropTypes.object
   };
 
   render() {
-    const { value, prefix } = this.props;
+    const { value } = this.props;
 
     return (
       <div
-        className={`${prefix}-design-component-whitespace-preview`}
+        className={`zent-design-component-whitespace-preview`}
         style={{ height: `${value.height}px` }}
       />
     );

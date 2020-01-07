@@ -178,9 +178,7 @@ export default class Design extends PureComponent {
 
     children: PropTypes.node,
 
-    className: PropTypes.string,
-
-    prefix: PropTypes.string
+    className: PropTypes.string
   };
 
   static defaultProps = {
@@ -192,8 +190,7 @@ export default class Design extends PureComponent {
     cache: false,
     cacheRestoreMessage: '提示：在浏览器中发现未提交的内容，是否使用该内容替换当前内容？',
     scrollTopOffset: -10,
-    scrollLeftOffset: -10,
-    prefix: 'zent'
+    scrollLeftOffset: -10
   };
 
   constructor(props) {
@@ -312,7 +309,6 @@ export default class Design extends PureComponent {
   renderPreview(preview) {
     const {
       components,
-      prefix,
       value,
       disabled,
       settings,
@@ -331,7 +327,6 @@ export default class Design extends PureComponent {
     } = this.state;
 
     return React.createElement(preview, {
-      prefix,
       components,
       value,
       validations,
@@ -919,13 +914,12 @@ export default class Design extends PureComponent {
   render() {
     const {
       className,
-      prefix,
       preview,
       cacheRestoreMessage,
       children
     } = this.props;
     const { showRestoreFromCache, bottomGap } = this.state;
-    const cls = cx(`${prefix}-design`, className);
+    const cls = cx('zent-design', className);
 
     return (
       <div className={cls} style={{ paddingBottom: bottomGap }}>

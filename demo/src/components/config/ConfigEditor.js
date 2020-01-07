@@ -10,10 +10,10 @@ import { DEFAULT_BACKGROUND } from '../../../../src/preview/constants';
 
 export default class ConfigEditor extends DesignEditor {
   render() {
-    const { value, settings, prefix, showError, validation } = this.props;
+    const { value, settings, showError, validation } = this.props;
 
     return (
-      <div className={`${prefix}-design-component-config-editor`}>
+      <div className={`zent-design-component-config-editor`}>
         <ControlGroup
           showError={showError || this.getMetaProperty('title', 'touched')}
           error={validation.title}
@@ -47,11 +47,11 @@ export default class ConfigEditor extends DesignEditor {
         <ControlGroup
           label="背景颜色:"
           labelAlign="top"
-          className={`${prefix}-design-component-config-editor__background`}
+          className={`zent-design-component-config-editor__background`}
           focusOnLabelClick={false}
         >
           <div
-            className={`${prefix}-design-component-config-editor__background-control`}
+            className={`zent-design-component-config-editor__background-control`}
           >
             <ColorPicker
               color={getBackground(value, settings)}
@@ -60,7 +60,7 @@ export default class ConfigEditor extends DesignEditor {
             <Button onClick={this.resetBackground}>重置</Button>
           </div>
           <div
-            className={`${prefix}-design-component-config-editor__background-hint`}
+            className={`zent-design-component-config-editor__background-hint`}
           >
             背景颜色只在手机端显示
           </div>

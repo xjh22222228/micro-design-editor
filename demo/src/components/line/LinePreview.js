@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 
 export default class LinePreview extends PureComponent {
   render() {
-    const { value, prefix } = this.props;
+    const { value } = this.props;
 
     return (
-      <div className={`${prefix}-design-component-line-preview`}>
+      <div className={`zent-design-component-line-preview`}>
         <div style={createStyle(value)} />
       </div>
     );
