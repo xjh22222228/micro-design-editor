@@ -239,6 +239,9 @@ export default class NoticeEditor extends DesignEditor {
 
 
 ## Change log
+**1.0.6**
+- 修复找不到图片模块问题
+
 **1.0.5**
 - 修复调用2次 `markAsSaved` 导致组件无法拖拽。
 - 修复调用2次 `markAsSaved` key 不是唯一的情况。

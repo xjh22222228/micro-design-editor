@@ -1,6 +1,6 @@
 {
   "name": "micro-design-editor",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "bugs": {
     "url": "https://github.com/xjh22222228/micro-design-editor/issues"
   },
@@ -51,6 +51,7 @@
   "license": "MIT",
   "keywords": [
     "react-component",
-    "design-editor-app"
+    "micro-design-editor",
+    "design"
   ]
 }
