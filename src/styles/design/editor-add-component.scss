@@ -18,13 +18,12 @@
     }
 
     &-list {
-      @include clearfix;
-
+      display: flex;
+      flex-wrap: wrap;
       padding-right: 5px;
     }
 
     &-btn-wrapper {
-      float: left;
       padding-left: 5px;
       margin-bottom: 10px;
       height: 40px;
@@ -114,7 +113,7 @@
       }
 
       .design-editor-add-tooltip {
-        display: block;
+        display: block !important;
       }
     }
 
