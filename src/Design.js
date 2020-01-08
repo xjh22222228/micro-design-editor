@@ -381,9 +381,14 @@ export default class Design extends PureComponent {
 
   onComponentValueChange = identity => (diff, replace = false) => {
     const { value } = this.props;
+    const uuid = Object.getPrototypeOf(identity)[UUID_KEY];
     const newComponentValue = replace
       ? assign({ [UUID_KEY]: this.getUUIDFromValue(identity) }, diff)
       : assign({}, identity, diff);
+    // newComponentValue 会移除掉原型链 UUID, 需要重新Set
+    Object.setPrototypeOf(newComponentValue, {
+      [UUID_KEY]: uuid
+    });
     const newValue = value.map(v => (v === identity ? newComponentValue : v));
     const changedProps = Object.keys(diff);
 
@@ -717,7 +722,7 @@ export default class Design extends PureComponent {
   };
 
   getUUIDFromValue(value) {
-    return value && value[UUID_KEY];
+    return value && Object.getPrototypeOf(value)[UUID_KEY];
   }
 
   setUUIDForValue(value, id) {
@@ -949,7 +954,7 @@ export default class Design extends PureComponent {
 
 function tagValuesWithUUID(values) {
   values.forEach(v => {
-    if (!v[UUID_KEY]) {
+    if (!([UUID_KEY] in v)) {
       Object.setPrototypeOf(v, {
         [UUID_KEY]: uuid()
       });

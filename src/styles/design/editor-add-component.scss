@@ -92,6 +92,8 @@
   }
 
   .zent-design-editor-add-component-btn-wrapper {
+    position: relative;
+
     &:hover {
       .zent-design-editor-add-component__mixed-btn {
         color: $theme-primary-4;
@@ -110,6 +112,26 @@
           color: $theme-stroke-4;
         }
       }
+
+      .design-editor-add-tooltip {
+        display: block;
+      }
+    }
+
+    .design-editor-add-tooltip {
+      z-index: 10;
+      position: absolute;
+      top: -37px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      max-width: 450px;
+      color: #666;
+      box-shadow: 0 0 3px #ccc;
+      white-space: nowrap;
+      display: none;
     }
 
     .zent-design-editor-add-component__mixed-btn--disabled {
@@ -123,8 +145,4 @@
       cursor: not-allowed;
     }
   }
-}
-
-.zent-design-editor-add-component-pop {
-  max-width: 250px;
 }

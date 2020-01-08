@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Pop from 'zent/es/pop';
 import { pick, get } from 'lodash';
 import { Draggable } from 'react-beautiful-dnd';
 import { DND_PREVIEW_CONTROLLER, DEFAULT_BACKGROUND } from './constants';
@@ -230,16 +229,25 @@ class DesignPreviewController extends PureComponent {
 
 function DeleteButton({ onDelete }) {
   return (
-    <Pop
-      content="确定删除？"
-      trigger="click"
-      position="left-center"
-      centerArrow
-      onConfirm={onDelete}
-      wrapperClassName="zent-design-preview-controller__action-btn-delete"
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+      className="zent-design-preview-controller__action-btn-delete zent-design-preview-controller__icon-delete"
+      onClick={e => {
+        e && e.stopPropagation();
+        onDelete();
+      }}
     >
-      <IconDelete onClick={stopEventPropagation} />
-    </Pop>
+      <g fill="none" fillRule="evenodd">
+        <circle cx="10" cy="10" r="10" />
+        <path
+          fill="#FFF"
+          d="M13.75 7.188l-.937-.938L10 9.063 7.188 6.25l-.938.937L9.062 10 6.25 12.812l.937.938L10 10.938l2.812 2.812.938-.937L10.938 10"
+        />
+      </g>
+    </svg>
   );
 }
 
@@ -291,34 +299,6 @@ function IconAdd() {
       </g>
     </svg>
   );
-}
-
-class IconDelete extends PureComponent {
-  render() {
-    const { onClick } = this.props;
-    return (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-        className="zent-design-preview-controller__icon-delete"
-        onClick={onClick}
-      >
-        <g fill="none" fillRule="evenodd">
-          <circle cx="10" cy="10" r="10" />
-          <path
-            fill="#FFF"
-            d="M13.75 7.188l-.937-.938L10 9.063 7.188 6.25l-.938.937L9.062 10 6.25 12.812l.937.938L10 10.938l2.812 2.812.938-.937L10.938 10"
-          />
-        </g>
-      </svg>
-    );
-  }
-}
-
-function stopEventPropagation(evt) {
-  evt && evt.stopPropagation();
 }
 
 export default DesignPreviewController;

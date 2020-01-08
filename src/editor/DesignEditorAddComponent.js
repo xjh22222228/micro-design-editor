@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Pop from 'zent/es/pop';
-import LazyMap from '../utils/LazyMap';
 import { isFunction, isNumber, noop } from 'lodash';
 import { serializeDesignType } from '../utils/design-type';
 import { splitGroup, isGrouped } from '../utils/component-group';
@@ -10,26 +8,13 @@ import { splitGroup, isGrouped } from '../utils/component-group';
 export default class DesignEditorAddComponent extends PureComponent {
   static propTypes = {
     components: PropTypes.array,
-
     componentInstanceCount: PropTypes.object,
-
     onAddComponent: PropTypes.func.isRequired,
-
     fromSelected: PropTypes.bool
   };
 
   static defaultProps = {
     fromSelected: false
-  };
-
-  state = {
-    popVisibleMap: new LazyMap(false),
-  };
-
-  onPopVisibleChange = key => visible => {
-    this.setState({
-      popVisibleMap: this.state.popVisibleMap.clone().set(key, visible),
-    });
   };
 
   onAdd = component => () => {
@@ -46,7 +31,6 @@ export default class DesignEditorAddComponent extends PureComponent {
 
   render() {
     const { components, componentInstanceCount } = this.props;
-    const { popVisibleMap } = this.state;
 
     if (!components || !components.length) {
       return null;
@@ -71,8 +55,6 @@ export default class DesignEditorAddComponent extends PureComponent {
                 component={c}
                 componentInstanceCount={componentInstanceCount}
                 onAdd={this.onAdd}
-                popVisibleMap={popVisibleMap}
-                onPopVisibleChange={this.onPopVisibleChange}
               />
             );
           })}
@@ -83,7 +65,6 @@ export default class DesignEditorAddComponent extends PureComponent {
 
   renderGrouped() {
     const { components, componentInstanceCount } = this.props;
-    const { popVisibleMap } = this.state;
     const groups = splitGroup(components);
 
     return (
@@ -95,8 +76,6 @@ export default class DesignEditorAddComponent extends PureComponent {
             components={g.components}
             componentInstanceCount={componentInstanceCount}
             onAdd={this.onAdd}
-            popVisibleMap={popVisibleMap}
-            onPopVisibleChange={this.onPopVisibleChange}
           />
         ))}
       </div>
@@ -108,9 +87,7 @@ function ComponentGroup({
   group,
   components,
   onAdd,
-  componentInstanceCount,
-  onPopVisibleChange,
-  popVisibleMap,
+  componentInstanceCount
 }) {
   return (
     <div className="zent-design-editor-add-component__grouped">
@@ -127,8 +104,6 @@ function ComponentGroup({
               component={c}
               componentInstanceCount={componentInstanceCount}
               onAdd={onAdd}
-              popVisibleMap={popVisibleMap}
-              onPopVisibleChange={onPopVisibleChange}
             />
           );
         })}
@@ -142,28 +117,15 @@ function ComponentButton(props) {
     component,
     componentInstanceCount,
     onAdd,
-    popVisibleMap,
-    onPopVisibleChange,
-    type,
+    type
   } = props;
 
   const disabled = !canAddMoreInstance(component, componentInstanceCount);
-  const key = serializeDesignType(component.type);
-  const visible = popVisibleMap.get(key);
   const message = getLimitMessage(component, componentInstanceCount);
 
   return (
-    <Pop
-      content={message}
-      trigger={disabled && message ? 'hover' : 'none'}
-      visible={visible}
-      onVisibleChange={onPopVisibleChange(key)}
-      position="top-center"
-      mouseLeaveDelay={100}
-      mouseEnterDelay={300}
-      className="zent-design-editor-add-component-pop"
-      wrapperClassName={`zent-design-editor-add-component-btn-wrapper zent-design-editor-add-component__${type}-btn-wrapper`}
-    >
+    <div className={`zent-design-editor-add-component-btn-wrapper zent-design-editor-add-component__${type}-btn-wrapper`}>
+      { disabled && <div className="design-editor-add-tooltip">{ message }</div> }
       <a
         onClick={onAdd(component)}
         className={cx(`zent-design-editor-add-component__${type}-btn`, {
@@ -173,7 +135,7 @@ function ComponentButton(props) {
       >
         {component.editor.designDescription}
       </a>
-    </Pop>
+    </div>
   );
 }
 
