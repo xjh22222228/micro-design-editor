@@ -937,12 +937,18 @@ export default class Design extends PureComponent {
             >
               使用
             </span>
-            <img 
+            <svg 
               className="x-alert-design__close" 
-              src={require('./img/close.svg')} 
-              alt=""
+              viewBox="0 0 1024 1024" 
+              version="1.1" 
+              xmlns="http://www.w3.org/2000/svg" 
+              p-id="2187" 
+              width="200" 
+              height="200"
               onClick={() => { this.setState({ showRestoreFromCache: false }) }}
-            />
+            >
+              <defs><style type="text/css"></style></defs><path d="M670.4 308.352 512 466.752l-158.4-158.4c-12.512-12.512-32.768-12.512-45.248 0s-12.512 32.768 0 45.248l158.4 158.4-158.4 158.4c-12.512 12.512-12.512 32.768 0 45.248 12.48 12.48 32.768 12.512 45.248 0l158.4-158.4 158.4 158.4c12.48 12.48 32.768 12.512 45.248 0 12.512-12.512 12.48-32.768 0-45.248L557.248 512l158.4-158.4c12.512-12.512 12.48-32.768 0-45.248C703.136 295.84 682.88 295.84 670.4 308.352z" p-id="2188" fill="#c8c9cc"></path>
+            </svg>
           </div>
         )}
         { this.renderPreview(preview) }
