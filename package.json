@@ -1,6 +1,13 @@
 {
   "name": "micro-design-editor",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "bugs": {
+    "url": "https://github.com/xjh22222228/micro-design-editor/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xjh22222228/micro-design-editor.git"
+  },
   "description": "design React component",
   "main": "es/index.js",
   "module": "es/index.js",

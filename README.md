@@ -35,7 +35,6 @@ npm i micro-design-editor -S
 | scrollTopOffset | 滚动到顶部时的偏移量 | number \| func | | 可选 |
 | scrollLeftOffset | 滚动到左侧时的偏移量 | number \| func | | 可选 |
 | className | 额外类名 | string | | 可选 |
-| prefix | 类名前缀 | string | | 可选 |
 
 `components` 是一个数组，列出了所有支持的组件，每一项需要指定组件的类型，预览和编辑组件，以及是否可以拖拽、编辑等。 
 
@@ -145,12 +144,6 @@ type Component = {
 * `design.validate(): Promise`, 触发校验，如果有错误会 reject，否则 resolve
 * `design.markAsSaved()`，标记为以保存状态，如果使用了缓存或者离开提示需要手动调用这个函数通知 Design 更改已经保存
 
-### stripUUID
-
-`Design` 上面有一个 `stripUUID` 方法，数据发送到服务器之前可以使用这个函数来剔除 `Design` 内部使用的 id，这样可以减小数据大小。
-
-使用这个函数是可选的，不剔除也不会有问题，只是传输和存储的数据会稍稍大一点。
-
 ### 如何实现新的 Design 组件
 
 每个 Design 组件都分为两部分：Preview 以及 Editor。
@@ -243,6 +236,19 @@ export default class NoticeEditor extends DesignEditor {
 
 ## Demo code
 [demo](./demo/src/index.js)
+
+
+## Change log
+**1.0.5**
+- 修复调用2次 `markAsSaved` 导致组件无法拖拽。
+- 修复调用2次 `markAsSaved` key 不是唯一的情况。
+- 修复调用2次 `markAsSaved`, `DesignPreviewController`组件属性`id`为`undefined`引发异常。
+- 废弃 `Design` 暴露的 `stripUUID`, 此API并没有多大作用，反而增加开销, 通过原型链即可解决原先问题。
+- 移除 `zent ui` 依赖。
+- 废弃 `Design` 组件无用的 `prefix` 属性。
+
+**1.0.4**
+- 修复组件配置 `editable` 为 `false` 首次添加组件编辑组件弹出。
 
 
 ## License

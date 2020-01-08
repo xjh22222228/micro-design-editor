@@ -30,7 +30,6 @@ H5 page editor, build your H5 pages in a WYSIWYG way.
 | scrollTopOffset | Top scroll offset | number \| func | | No |
 | scrollLeftOffset | Left scroll offset | number \| func | | No |
 | className | Custom class name | string | | No |
-| prefix | Custom prefix | string | | No |
 
 `components` is an array, all available componets should be included in this array. Each item in this array is a component description, here are the possible options.
 
@@ -113,11 +112,11 @@ Declaration：`group(name: string): object`
 [
   config,
 
-  Design.group('分组1'),
+  Design.group('group1'),
   componentA,
   componentB,
 
-  Design.group('分组2'),
+  Design.group('group2'),
   componentC,
   componentD
 ]
@@ -133,12 +132,6 @@ There's a predefined setting called `previewBackground`, Design will use this va
 
 * `design.validate(): Promise`, trigger a validation, resolves only if there's no erro.
 * `design.markAsSaved()`, tell `Desgin` data has been saved.
-
-### stripUUID
-
-There's a `stripUUID` method on `Design` instance, you can use this method to strip all internal ids used by `Design` before sending data to server. This may help reduce data size.
-
-Note: calling `stripUUID` before sending data to server is optional.
 
 ### How to Implement new Design Component?
 
