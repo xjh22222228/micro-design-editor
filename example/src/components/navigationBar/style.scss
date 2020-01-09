@@ -1,0 +1,23 @@
+.zent-design-component-config-preview {
+  width: 318px;
+  height: 64px;
+  background-image: url("../../assets/img/navigation-bar/bar-bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  .zent-design-component-config-preview__title {
+    display: inline-block;
+    padding: 23px 40px 0 60px;
+    height: 64px;
+    line-height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+  }
+}

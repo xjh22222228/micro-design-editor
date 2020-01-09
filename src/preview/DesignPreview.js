@@ -138,7 +138,7 @@ class DesignPreview extends PureComponent {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   className={cx('zent-design__item-list', {
-                    ['zent-design__item-list--full-height']: !hasAppendableComponent,
+                    'zent-design__item-list--full-height': !hasAppendableComponent,
                   })}
                 >
                   {value.map(v => {
@@ -215,14 +215,14 @@ class DesignPreview extends PureComponent {
                             className={cx(
                               'zent-design-add-component-overlay',
                               {
-                                ['zent-design-add-component-overlay--top']:
+                                'zent-design-add-component-overlay--top':
                                   addComponentOverlayPosition ===
                                   ADD_COMPONENT_OVERLAY_POSITION.TOP,
-                                ['zent-design-add-component-overlay--bottom']:
+                                'zent-design-add-component-overlay--bottom':
                                   addComponentOverlayPosition ===
                                   ADD_COMPONENT_OVERLAY_POSITION.BOTTOM,
-                                ['zent-design-add-component-overlay--grouped']: isComponentsGrouped,
-                                ['zent-design-add-component-overlay--mixed']: !isComponentsGrouped,
+                                'zent-design-add-component-overlay--grouped': isComponentsGrouped,
+                                'zent-design-add-component-overlay--mixed': !isComponentsGrouped,
                               }
                             )}
                           >
@@ -246,8 +246,8 @@ class DesignPreview extends PureComponent {
           {hasAppendableComponent && (
             <div
               className={cx('zent-design__add', {
-                ['zent-design__add--grouped']: isComponentsGrouped,
-                ['zent-design__add--mixed']: !isComponentsGrouped,
+                'zent-design__add--grouped': isComponentsGrouped,
+                'zent-design__add--mixed': !isComponentsGrouped,
               })}
             >
               <DesignEditorAddComponent

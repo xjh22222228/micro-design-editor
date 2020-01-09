@@ -97,10 +97,10 @@ class DesignPreviewController extends PureComponent {
     ]);
     const getClassName = highlight =>
       cx('zent-design-preview-controller', {
-        ['zent-design-preview-controller--editable']: editable,
-        ['zent-design-preview-controller--selected']: isSelected,
-        ['zent-design-preview-controller--highlight']: highlight,
-        ['zent-design-preview-controller--dragable']: dragable,
+        'zent-design-preview-controller--editable': editable,
+        'zent-design-preview-controller--selected': isSelected,
+        'zent-design-preview-controller--highlight': highlight,
+        'zent-design-preview-controller--dragable': dragable,
       });
 
     const tree = dragable ? (
