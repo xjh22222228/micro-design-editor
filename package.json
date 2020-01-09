@@ -1,6 +1,6 @@
 {
   "name": "micro-design-editor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "bugs": {
     "url": "https://github.com/xjh22222228/micro-design-editor/issues"
   },
@@ -17,7 +17,6 @@
   ],
   "scripts": {
     "build": "nwb build-react-component --no-demo && npm run build-css --scripts-prepend-node-path",
-    "build-npm": "nwb build-react-component --no-demo && npm run build-css --scripts-prepend-node-path && node npmBuild.js",
     "build-css": "./scripts/build-css.sh",
     "build-gh": "node gh.js",
     "clean": "nwb clean-module && nwb clean-demo && rm -rf css",

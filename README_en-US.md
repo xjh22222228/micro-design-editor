@@ -4,6 +4,14 @@ path: component/design
 group: Domain-specific
 ---
 
+## Example
+[https://xjh22222228.github.io/micro-design-editor/](https://xjh22222228.github.io/micro-design-editor/)
+
+## Install
+```
+npm i micro-design-editor -S
+```
+
 ## Design
 
 H5 page editor, build your H5 pages in a WYSIWYG way.
@@ -225,3 +233,11 @@ export default class NoticeEditor extends DesignEditor {
   }
 }
 ```
+
+
+## Example code
+[Example](https://github.com/xjh22222228/micro-design-editor/blob/master/example/src/App.js)
+
+
+## License
+MIT

@@ -2,6 +2,9 @@
 
 本项目Fork `@zent/design` 作为长期维护。
 
+## Example
+[https://xjh22222228.github.io/micro-design-editor/](https://xjh22222228.github.io/micro-design-editor/)
+
 
 ## 安装
 ```
@@ -234,11 +237,14 @@ export default class NoticeEditor extends DesignEditor {
 ```
 
 
-## Demo code
-[demo](./demo/src/index.js)
+## 参考代码
+[Example](https://github.com/xjh22222228/micro-design-editor/blob/master/example/src/App.js)
 
 
 ## Change log
+**1.0.7**
+- 修复部分样式错位问题
+
 **1.0.6**
 - 修复找不到图片模块问题
 
