@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.ed22edfd.chunk.css",
-    "main.js": "/static/js/main.e5f245de.chunk.js",
-    "main.js.map": "/static/js/main.e5f245de.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.4acfb9c0.js",
-    "runtime-main.js.map": "/static/js/runtime-main.4acfb9c0.js.map",
-    "static/css/2.9da66810.chunk.css": "/static/css/2.9da66810.chunk.css",
-    "static/js/2.951e14c4.chunk.js": "/static/js/2.951e14c4.chunk.js",
-    "static/js/2.951e14c4.chunk.js.map": "/static/js/2.951e14c4.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.9024c3338566ec8dddb17695bebc155a.js": "/precache-manifest.9024c3338566ec8dddb17695bebc155a.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.9da66810.chunk.css.map": "/static/css/2.9da66810.chunk.css.map",
-    "static/css/main.ed22edfd.chunk.css.map": "/static/css/main.ed22edfd.chunk.css.map",
-    "static/js/2.951e14c4.chunk.js.LICENSE": "/static/js/2.951e14c4.chunk.js.LICENSE"
+    "main.css": "/micro-design-editor/static/css/main.ed22edfd.chunk.css",
+    "main.js": "/micro-design-editor/static/js/main.c416874e.chunk.js",
+    "main.js.map": "/micro-design-editor/static/js/main.c416874e.chunk.js.map",
+    "runtime-main.js": "/micro-design-editor/static/js/runtime-main.cf1f8251.js",
+    "runtime-main.js.map": "/micro-design-editor/static/js/runtime-main.cf1f8251.js.map",
+    "static/css/2.9da66810.chunk.css": "/micro-design-editor/static/css/2.9da66810.chunk.css",
+    "static/js/2.951e14c4.chunk.js": "/micro-design-editor/static/js/2.951e14c4.chunk.js",
+    "static/js/2.951e14c4.chunk.js.map": "/micro-design-editor/static/js/2.951e14c4.chunk.js.map",
+    "index.html": "/micro-design-editor/index.html",
+    "precache-manifest.73fb2761ae6ff2fa2a5e591aafbdd614.js": "/micro-design-editor/precache-manifest.73fb2761ae6ff2fa2a5e591aafbdd614.js",
+    "service-worker.js": "/micro-design-editor/service-worker.js",
+    "static/css/2.9da66810.chunk.css.map": "/micro-design-editor/static/css/2.9da66810.chunk.css.map",
+    "static/css/main.ed22edfd.chunk.css.map": "/micro-design-editor/static/css/main.ed22edfd.chunk.css.map",
+    "static/js/2.951e14c4.chunk.js.LICENSE": "/micro-design-editor/static/js/2.951e14c4.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.4acfb9c0.js",
+    "static/js/runtime-main.cf1f8251.js",
     "static/css/2.9da66810.chunk.css",
     "static/js/2.951e14c4.chunk.js",
     "static/css/main.ed22edfd.chunk.css",
-    "static/js/main.e5f245de.chunk.js"
+    "static/js/main.c416874e.chunk.js"
   ]
 }
