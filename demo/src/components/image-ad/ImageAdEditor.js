@@ -37,6 +37,7 @@ export default class ImageAdEditor extends DesignEditor {
       <div className={`zent-design-component-image-ad-editor`}>
         <ControlGroup
           label="显示大小:"
+          labelWidth="55px"
           showError={showError || this.getMetaProperty('size', 'touched')}
           error={validation.size}
         >

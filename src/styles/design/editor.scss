@@ -14,15 +14,8 @@ $control-group-red: $theme-error-2;
 
   &-label {
     font-size: 12px;
-    width: 85px;
     flex-shrink: 0;
-    text-align: right;
     margin-right: 10px;
-
-    &--top {
-      align-self: flex-start;
-      margin-top: 6px;
-    }
   }
 
   &-help-desc {

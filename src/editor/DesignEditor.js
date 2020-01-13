@@ -5,8 +5,7 @@ import reorder from '../utils/reorder';
 import shallowEqual from '../utils/shallowEqual';
 import { assign } from 'lodash';
 
-const NOT_EVENT_MSG =
-  'onInputChange expects an `Event` with { target: { name, value } } as argument';
+const NOT_EVENT_MSG = 'onInputChange expects an `Event` with { target: { name, value } } as argument';
 
 export class DesignEditor extends Component {
   static propTypes = {
@@ -42,7 +41,6 @@ export class DesignEditor extends Component {
   static designDescription = '未知组件';
 
   // value 的验证函数
-  // eslint-disable-next-line
   static validate(value, prevValue, changedProps) {
     return new Promise(resolve => resolve({}));
   }
@@ -200,6 +198,8 @@ export class ControlGroup extends PureComponent {
     helpDesc: PropTypes.node,
     label: PropTypes.node,
 
+    labelWidth: PropTypes.string,
+
     // 自定义label对齐方式
     labelAlign: PropTypes.string,
 
@@ -215,7 +215,9 @@ export class ControlGroup extends PureComponent {
     showError: false,
     showLabel: true,
     focusOnLabelClick: true,
-    error: ''
+    error: '',
+    labelWidth: '65px',
+    labelAlign: 'right'
   };
 
   render() {
@@ -225,6 +227,7 @@ export class ControlGroup extends PureComponent {
       error,
       showLabel,
       label,
+      labelWidth,
       labelAlign,
       helpDesc,
       required,
@@ -247,11 +250,8 @@ export class ControlGroup extends PureComponent {
           },
           showLabel ? (
             <div
-              className={cx(
-                'zent-design-editor__control-group-label',
-                labelAlign &&
-                  `zent-design-editor__control-group-label--${labelAlign}`
-              )}
+              className="zent-design-editor__control-group-label"
+              style={{ textAlign: labelAlign, width: labelWidth }}
             >
               {required && (
                 <span className="zent-design-editor__control-group-required-star">*</span>
