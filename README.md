@@ -16,7 +16,7 @@ npm i micro-design-editor -S
 
 微页面编辑组件，用所见即所得(WYSIWG)的方式创建内容丰富的富文本页面。
 
-### API
+### `Design` 组件API
 
 | 参数 | 说明 | 类型 | 默认值 | 是否必须 |
 |------|------|------|--------|--------|
@@ -153,7 +153,7 @@ type Component = {
 
 Preview 比较简单，实现一个组件接受 `{ value: any, globalConfig: any, design: object }` 这些 props即可。
 
-Editor 请继承 `@zent/design/es/editor/DesignEditor`，这个基类提供了一些常用的方法（例如 `onChange` 事件的处理函数），在子类里面可以直接使用。
+Editor 请继承 `micro-design-editor/es/editor/DesignEditor`，这个基类提供了一些常用的方法（例如 `onChange` 事件的处理函数），在子类里面可以直接使用。
 
 Editor 接受如下props：`{ value: any, onChange: func, showError: boolean, validation: object, design object }`。
 
@@ -164,6 +164,25 @@ Editor 接受如下props：`{ value: any, onChange: func, showError: boolean, va
 Editor 必须提供这几个静态属性：`designType, designDescription, getInitialValue, validate`。
 
 Editor 内部支持使用 [`react-beautiful-dnd`](https://github.com/atlassian/react-beautiful-dnd) 实现拖拽，只需要实现 `shouldHandleDragEnd(type: string): boolean` 以及 `onDragEnd(result)` 即可。`react-beautiful-dnd` 的使用请看官方文档以及 `components/image-ad` 下的示例。
+
+
+
+
+### `ControlGroup` 组件API
+
+| 参数 | 说明 | 类型 | 默认值 | 是否必须 |
+|------|------|------|--------|--------|
+| showLabel | 是否显示label | boolean | true | 否 |
+| label | 描述 | string / ReactNode | null | 否 |
+| className | 类名 | string | null | 否 |
+| showError | 是否显示错误 | boolean | false | 否 |
+| error | 错误的提示信息 | string | '' | 否 |
+| labelWidth | label宽度 | string | '65px' | 否 |
+| labelAlign | label对齐方式 | string: `left` `center` `right` | 'right' | 否 |
+| required | 是否必填 | boolean | false | 否 |
+| children | 子节点 | ReactNode | null | 否 |
+| focusOnLabelClick | 点击 label 区域时是否 focus 到 control 的 input 上 | boolean | true | 否 |
+
 
 #### 一个例子
 
