@@ -261,6 +261,11 @@ export default class NoticeEditor extends DesignEditor {
 
 
 ## Change log
+**1.2.0**
+- 移除 `findDOMNode` API
+
+
+
 **1.1.0**
 - `ControlGroup` 组件新增 `labelWidth` 属性，支持宽度的设定。
 - `ControlGroup` 组件新增 `labelAlign` 属性，文本对齐方式，支持 `left` / `center` / `right`。

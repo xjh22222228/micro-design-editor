@@ -125,6 +125,21 @@ class DesignPreview extends PureComponent {
         >
           {disabled && <div className="zent-design__disabled-mask" />}
 
+          {hasAppendableComponent && (
+            <div
+              className={cx('zent-design__add', {
+                'zent-design__add--grouped': isComponentsGrouped,
+                'zent-design__add--mixed': !isComponentsGrouped,
+              })}
+            >
+              <DesignEditorAddComponent
+                componentInstanceCount={componentInstanceCount}
+                components={appendableComponents}
+                onAddComponent={onAddComponent}
+              />
+            </div>
+          )}
+
           <Droppable
             droppableId="zent-design-preview-list"
             type={DND_PREVIEW_CONTROLLER}
@@ -242,21 +257,6 @@ class DesignPreview extends PureComponent {
               );
             }}
           </Droppable>
-
-          {hasAppendableComponent && (
-            <div
-              className={cx('zent-design__add', {
-                'zent-design__add--grouped': isComponentsGrouped,
-                'zent-design__add--mixed': !isComponentsGrouped,
-              })}
-            >
-              <DesignEditorAddComponent
-                componentInstanceCount={componentInstanceCount}
-                components={appendableComponents}
-                onAddComponent={onAddComponent}
-              />
-            </div>
-          )}
           {footer}
         </div>
       </DragDropContext>
@@ -343,4 +343,4 @@ function saveRef(map, id, instance) {
   }
 }
 
-export default DesignPreview;
+export default React.forwardRef((props, ref) => <DesignPreview {...props} forwardedRef={ref} />);

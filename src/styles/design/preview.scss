@@ -3,10 +3,10 @@
 
 .zent-design-preview {
   border: 1px solid $theme-stroke-6;
-  width: $preview-width;
   min-height: $preview-height;
   position: relative;
   user-select: none;
+  display: flex;
 
   .zent-design-add-component-overlay--grouped {
     background: $theme-stroke-9;

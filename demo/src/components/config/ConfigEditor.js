@@ -4,8 +4,7 @@ import React from 'react';
 import Button from 'zent/es/button';
 import Input from 'zent/es/input';
 import ColorPicker from 'zent/es/colorpicker';
-
-import { DesignEditor, ControlGroup } from '../../../../src/editor/DesignEditor';
+import { DesignEditor, ControlGroup } from '../../../../src';
 import { DEFAULT_BACKGROUND } from '../../../../src/preview/constants';
 
 export default class ConfigEditor extends DesignEditor {
@@ -13,7 +12,7 @@ export default class ConfigEditor extends DesignEditor {
     const { value, settings, showError, validation } = this.props;
 
     return (
-      <div className={`zent-design-component-config-editor`}>
+      <div className="zent-design-component-config-editor">
         <ControlGroup
           showError={showError || this.getMetaProperty('title', 'touched')}
           error={validation.title}
@@ -46,7 +45,6 @@ export default class ConfigEditor extends DesignEditor {
 
         <ControlGroup
           label="背景颜色:"
-          labelAlign="top"
           className={`zent-design-component-config-editor__background`}
           focusOnLabelClick={false}
         >

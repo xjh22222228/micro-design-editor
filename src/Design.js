@@ -1,6 +1,4 @@
 /**
- * 设计文档
- *
  * 预览
  * `DesignPreview` 组件是整个预览块的包裹层，负责渲染左侧预览的框架。`DesignPreview` 和 `config`
  * 子组件是相关的，`config` 组件是知道 `DesignPreview` 的存在的；而 `DesignPreview` 的渲染是
@@ -142,7 +140,7 @@ export default class Design extends PureComponent {
     onChange: PropTypes.func.isRequired,
 
     // 用来渲染整个 Design 组件
-    preview: PropTypes.func,
+    preview: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
     // 预览部分底部的额外信息
     previewFooter: PropTypes.node,

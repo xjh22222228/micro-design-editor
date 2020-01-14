@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import scroll from '../utils/scroll';
 import offset from '../utils/offset';
 import { isFunction } from 'lodash';
-import { findDOMNode } from 'react-dom';
 
 function scrollNodeToTop(node, offsets) {
   const pos = offset(node);
@@ -21,14 +20,20 @@ export default class DesignPreviewItem extends PureComponent {
     children: PropTypes.node.isRequired
   };
 
+  constructor(props) {
+    super(props);
+
+    this.node = React.createRef();
+  }
+
   render() {
     const { children } = this.props;
 
-    return <div className="zent-design-preview-item">{ children }</div>;
+    return <div className="zent-design-preview-item" ref={this.node}>{children}</div>;
   }
 
   scrollTop(offsets) {
-    const node = findDOMNode(this);
+    const node = this.node.current;
     scrollNodeToTop(node, offsets);
   }
 }

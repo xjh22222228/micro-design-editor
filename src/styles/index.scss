@@ -8,7 +8,6 @@
 @import "./design/alert";
 
 .zent-design {
-  width: 760px;
   text-rendering: optimizelegibility;
   font-family: inherit;
 
@@ -23,6 +22,7 @@
   }
 
   &__add {
+    width: 210px;
     padding-bottom: 5px;
     position: relative;
     border-top: 1px solid $theme-stroke-6;
