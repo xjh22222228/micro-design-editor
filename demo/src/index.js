@@ -11,29 +11,6 @@ import whitespaceConf from './components/whitespace';
 import lineConf from './components/line';
 import imageAdConf from './components/image-ad';
 
-const components = [
-  Object.assign({}, configConf, {
-    // 是否可以拖拽
-    dragable: false,
-
-    // 是否出现在底部的添加组件区域
-    appendable: false,
-
-    // 是否可以编辑，UMP里面有些地方config是不能编辑的
-    // editable: true,
-
-    configurable: false,
-
-    highlightWhenSelect: false,
-  }),
-
-  imageAdConf,
-
-  Object.assign({ limit: 1 }, whitespaceConf),
-
-  Object.assign({ limit: 2 }, lineConf),
-];
-
 const groupedComponents = [
   Object.assign({}, configConf, {
     // 是否可以拖拽
@@ -55,12 +32,11 @@ const groupedComponents = [
 
   Design.group('其他'),
   Object.assign({ limit: 1 }, whitespaceConf),
-  Object.assign({ limit: 2 }, lineConf),
+  lineConf,
 ];
 
 class Demo extends Component {
   state = {
-    grouped: true,
     value: [
       {
         type: configConf.type,
@@ -68,7 +44,7 @@ class Demo extends Component {
       },
     ],
     settings: {
-      // previewBackground: 'red'
+      previewBackground: '#fff'
     },
   };
 
@@ -84,40 +60,35 @@ class Demo extends Component {
     });
   };
 
-  switchMode = () => {
-    const { grouped } = this.state;
-
-    this.setState({
-      grouped: !grouped,
-    });
-  };
-
   render() {
-    const { grouped } = this.state;
 
-    return (
-      <div>
-        <Design
-          ref={this.saveDesign}
-          cache
-          cacheId="micro-design-editor"
-          confirmUnsavedLeave={false}
-          components={grouped ? groupedComponents : components}
-          value={this.state.value}
-          onChange={this.onChange}
-          settings={this.state.settings}
-          onSettingsChange={this.onSettingsChange}
-          scrollTopOffset={-270}
-          globalConfig={window._global}
-        />
-        <div className="design-example-actions">
+    const PageHeader = (
+      <div className="design-page-header">
+        <div className="design-page-header__go-back">返回微页面</div>
+        <div>
           <Button type="primary" onClick={this.submit}>上架</Button>
-          <Button onClick={this.notImplemented}>预览</Button>
-          <Button onClick={this.switchMode}>
-            {grouped ? '合并显示' : '分组显示'}
-          </Button>
+          <Button onClick={this.notImplemented}>保存</Button>
         </div>
       </div>
+    );
+
+    return (
+      <Design
+        ref={this.saveDesign}
+        cache
+        cacheId="micro-design-editor"
+        confirmUnsavedLeave={false}
+        components={groupedComponents}
+        value={this.state.value}
+        onChange={this.onChange}
+        settings={this.state.settings}
+        onSettingsChange={this.onSettingsChange}
+        scrollTopOffset={-270}
+        globalConfig={window._global}
+        pageHeader={PageHeader}
+      >
+        <div>Design</div>
+      </Design>
     );
   }
 

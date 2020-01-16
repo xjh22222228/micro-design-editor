@@ -13,8 +13,8 @@ export default class ConfigPreview extends PureComponent {
     const { value } = this.props;
 
     return (
-      <div className={`zent-design-component-config-preview`}>
-        <div className={`zent-design-component-config-preview__title`}>
+      <div className="zent-design-component-config-preview">
+        <div className="zent-design-component-config-preview__title">
           {value.title}
         </div>
       </div>

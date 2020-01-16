@@ -30,9 +30,6 @@ class DesignPreviewController extends PureComponent {
     // 时候现实删除按钮
     canDelete: PropTypes.bool,
 
-    // 是否吸纳事添加组件按钮
-    canInsert: PropTypes.bool,
-
     // 选中时是否高亮
     highlightWhenSelect: PropTypes.bool,
 
@@ -79,7 +76,6 @@ class DesignPreviewController extends PureComponent {
       configurable,
       editable,
       canDelete,
-      canInsert,
       highlightWhenSelect,
       isSelected,
       component: PreviewComponent,
@@ -93,7 +89,7 @@ class DesignPreviewController extends PureComponent {
       'value',
       'design',
       'globalConfig',
-      'settings',
+      'settings'
     ]);
     const getClassName = highlight =>
       cx('zent-design-preview-controller', {
@@ -142,18 +138,6 @@ class DesignPreviewController extends PureComponent {
               {showButtons && canDelete && (
                 <DeleteButton onDelete={this.onDelete} />
               )}
-              {showButtons && canInsert && (
-                <AddButton
-                  onAdd={this.onPrepend}
-                  className="zent-design-preview-controller__prepend"
-                />
-              )}
-              {showButtons && canInsert && (
-                <AddButton
-                  onAdd={this.onAppend}
-                  className="zent-design-preview-controller__append"
-                />
-              )}
             </div>
           );
         }}
@@ -171,18 +155,6 @@ class DesignPreviewController extends PureComponent {
 
         {configurable && canDelete && (
           <DeleteButton onDelete={this.onDelete} />
-        )}
-        {configurable && canInsert && (
-          <AddButton
-            onAdd={this.onPrepend}
-            className="zent-design-preview-controller__prepend"
-          />
-        )}
-        {configurable && canInsert && (
-          <AddButton
-            onAdd={this.onAppend}
-            className="zent-design-preview-controller__append"
-          />
         )}
       </div>
     );
@@ -246,56 +218,6 @@ function DeleteButton({ onDelete }) {
           fill="#FFF"
           d="M13.75 7.188l-.937-.938L10 9.063 7.188 6.25l-.938.937L9.062 10 6.25 12.812l.937.938L10 10.938l2.812 2.812.938-.937L10.938 10"
         />
-      </g>
-    </svg>
-  );
-}
-
-function AddButton({ onAdd, className }) {
-  return (
-    <div
-      className={cx(
-        'zent-design-preview-controller__action-btn-add-container',
-        className
-      )}
-    >
-      <a
-        className={'zent-design-preview-controller__action-btn-add'}
-        onClick={onAdd}
-      >
-        <IconAdd />
-      </a>
-      <AddMarker />
-    </div>
-  );
-}
-
-function AddMarker() {
-  return (
-    <div className="zent-design-preview-controller__add-marker">
-      <i
-        className="zent-design-preview-controller__add-marker-circle zent-design-preview-controller__add-marker-circle--left"
-      />
-      <div className="zent-design-preview-controller__add-marker-line" />
-      <i
-        className="zent-design-preview-controller__add-marker-circle zent-design-preview-controller__add-marker-circle--right"
-      />
-    </div>
-  );
-}
-
-function IconAdd() {
-  return (
-    <svg
-      width="17"
-      height="17"
-      viewBox="0 0 17 17"
-      xmlns="http://www.w3.org/2000/svg"
-      className="zent-design-preview-controller__icon-add"
-    >
-      <g fill="none" fillRule="evenodd">
-        <circle cx="8.5" cy="8.5" r="8.5" />
-        <path d="M8 8H5v1h3v3h1V9h3V8H9V5H8v3z" fill="#FFF" />
       </g>
     </svg>
   );

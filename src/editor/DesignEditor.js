@@ -198,8 +198,6 @@ export class ControlGroup extends PureComponent {
     helpDesc: PropTypes.node,
     label: PropTypes.node,
 
-    labelWidth: PropTypes.string,
-
     // 自定义label对齐方式
     labelAlign: PropTypes.string,
 
@@ -216,8 +214,7 @@ export class ControlGroup extends PureComponent {
     showLabel: true,
     focusOnLabelClick: true,
     error: '',
-    labelWidth: '65px',
-    labelAlign: 'right'
+    labelAlign: 'left'
   };
 
   render() {
@@ -227,7 +224,6 @@ export class ControlGroup extends PureComponent {
       error,
       showLabel,
       label,
-      labelWidth,
       labelAlign,
       helpDesc,
       required,
@@ -251,7 +247,7 @@ export class ControlGroup extends PureComponent {
           showLabel ? (
             <div
               className="zent-design-editor__control-group-label"
-              style={{ textAlign: labelAlign, width: labelWidth }}
+              style={{ textAlign: labelAlign }}
             >
               {required && (
                 <span className="zent-design-editor__control-group-required-star">*</span>

@@ -142,9 +142,6 @@ export default class Design extends PureComponent {
     // 用来渲染整个 Design 组件
     preview: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
 
-    // 预览部分底部的额外信息
-    previewFooter: PropTypes.node,
-
     // 有未保存数据关闭窗口时需要用户确认
     // 离开时的确认文案新版本的浏览器是不能自定义的。
     // https://www.chromestatus.com/feature/5349061406228480
@@ -310,7 +307,6 @@ export default class Design extends PureComponent {
       value,
       disabled,
       settings,
-      previewFooter,
       globalConfig,
     } = this.props;
     const {
@@ -331,7 +327,6 @@ export default class Design extends PureComponent {
       showError,
       settings: settings || managedSettings,
       onSettingsChange: this.onSettingsChange,
-      footer: previewFooter,
       componentInstanceCount,
       onComponentValueChange: this.onComponentValueChange,
       onAddComponent: this.onAdd,
@@ -919,36 +914,15 @@ export default class Design extends PureComponent {
       className,
       preview,
       cacheRestoreMessage,
-      children
+      children,
+      pageHeader
     } = this.props;
     const { showRestoreFromCache, bottomGap } = this.state;
     const cls = cx('zent-design', className);
 
     return (
       <div className={cls} style={{ paddingBottom: bottomGap }}>
-        {showRestoreFromCache && (
-          <div className="x-alert-design">
-            { cacheRestoreMessage }
-            <span
-              className="x-alert-design__restore-cache-alert-use"
-              onClick={this.restoreCache}
-            >
-              使用
-            </span>
-            <svg 
-              className="x-alert-design__close" 
-              viewBox="0 0 1024 1024" 
-              version="1.1" 
-              xmlns="http://www.w3.org/2000/svg" 
-              p-id="2187" 
-              width="200" 
-              height="200"
-              onClick={() => { this.setState({ showRestoreFromCache: false }) }}
-            >
-              <defs><style type="text/css"></style></defs><path d="M670.4 308.352 512 466.752l-158.4-158.4c-12.512-12.512-32.768-12.512-45.248 0s-12.512 32.768 0 45.248l158.4 158.4-158.4 158.4c-12.512 12.512-12.512 32.768 0 45.248 12.48 12.48 32.768 12.512 45.248 0l158.4-158.4 158.4 158.4c12.48 12.48 32.768 12.512 45.248 0 12.512-12.512 12.48-32.768 0-45.248L557.248 512l158.4-158.4c12.512-12.512 12.48-32.768 0-45.248C703.136 295.84 682.88 295.84 670.4 308.352z" p-id="2188" fill="#c8c9cc"></path>
-            </svg>
-          </div>
-        )}
+        <header className="design-edit-header">{pageHeader}</header>
         { this.renderPreview(preview) }
         { children }
       </div>

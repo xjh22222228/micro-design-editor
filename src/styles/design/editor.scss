@@ -2,20 +2,26 @@
 
 $control-group-red: $theme-error-2;
 
+.design-editor-container {
+  width: 300px;
+  padding: 20px 20px 50px;
+  background: #fff;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .zent-design-editor__control-group {
   &:not(:last-child) {
     margin-bottom: 20px;
   }
 
-  &-container {
-    display: flex;
-    align-items: center;
-  }
-
   &-label {
-    font-size: 12px;
-    flex-shrink: 0;
-    margin-right: 10px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #333;
   }
 
   &-help-desc {
@@ -28,7 +34,6 @@ $control-group-red: $theme-error-2;
   }
 
   &-error {
-    margin-left: 94px;
     margin-top: 5px;
   }
 

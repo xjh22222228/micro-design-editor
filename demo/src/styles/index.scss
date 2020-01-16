@@ -14,3 +14,15 @@
     margin-right: 10px;
   }
 }
+
+.design-page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  &__go-back {
+    color: #4f4f4f;
+    cursor: pointer;
+  }
+}

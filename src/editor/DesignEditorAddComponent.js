@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { isFunction, isNumber, noop } from 'lodash';
+import { isFunction, noop } from 'lodash';
 import { serializeDesignType } from '../utils/design-type';
 import { splitGroup, isGrouped } from '../utils/component-group';
 
@@ -121,11 +121,10 @@ function ComponentButton(props) {
   } = props;
 
   const disabled = !canAddMoreInstance(component, componentInstanceCount);
-  const message = getLimitMessage(component, componentInstanceCount);
+  const limitCount = getLimitCount(component, componentInstanceCount);
 
   return (
     <div className={`zent-design-editor-add-component-btn-wrapper zent-design-editor-add-component__${type}-btn-wrapper`}>
-      { disabled && <div className="design-editor-add-tooltip">{ message }</div> }
       <a
         onClick={onAdd(component)}
         className={cx(`zent-design-editor-add-component__${type}-btn`, {
@@ -133,7 +132,16 @@ function ComponentButton(props) {
         })}
         disabled={disabled}
       >
-        {component.editor.designDescription}
+      {(component.icon && typeof component.icon === 'string') ? (
+        <img 
+          src={component.icon} 
+          className="design-button-icon" 
+          alt=""
+          draggable="false"
+        />
+      ) : component.icon}
+        <div>{component.editor.designDescription}</div>
+        <div className="limit-count">{limitCount}/{component.limit || 999}</div>
       </a>
     </div>
   );
@@ -151,26 +159,12 @@ function canAddMoreInstance(component, componentInstanceCount) {
   return limit ? count < limit : true;
 }
 
-function getLimitMessage(component, componentInstanceCount) {
-  const { type, limitMessage, limit } = component;
+function getLimitCount(component, componentInstanceCount) {
+  const { type } = component;
   const key = serializeDesignType(type);
   const count = componentInstanceCount.get(key);
 
-  if (isFunction(limitMessage)) {
-    return limitMessage(count);
-  }
-
-  let defaultMessage = '';
-  if (isNumber(limit)) {
-    // limit === 0 表示不限制
-    if (limit > 0) {
-      defaultMessage = `该组件最多可以添加 ${limit} 个`;
-    } else if (limit < 0) {
-      defaultMessage = '该组件暂不可用';
-    }
-  }
-
-  return limitMessage || defaultMessage;
+  return count;
 }
 
 // Normalize to Promise

@@ -70,7 +70,6 @@ export default class ImageAdEditor extends DesignEditor {
                       className={`zent-design-component-image-ad-editor__entry`}
                     >
                       <ImageEntry
-                        prefix={prefix}
                         imageId={imageId}
                         imageUrl={img.imageUrl}
                         linkTitle={img.linkTitle}

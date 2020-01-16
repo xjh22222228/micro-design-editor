@@ -4,7 +4,6 @@
 .zent-design-editor-add-component {
   box-sizing: border-box;
 
-  // Remove this style
   .zent-design-editor-add-component__mixed {
     padding: 0 5px;
 
@@ -49,12 +48,13 @@
   }
 
   .zent-design-editor-add-component__grouped {
-    padding: 0 5px 0 10px;
+    padding: 0 15px;
 
     &-title {
-      font-size: 12px;
-      margin-bottom: 8px;
-      margin-top: 13px;
+      font-size: 14px;
+      font-weight: 500;
+      margin: 13px 0 13px 10px;
+      color: #323233;
     }
 
     &-list {
@@ -63,17 +63,14 @@
     }
 
     &-btn-wrapper {
+      padding: 10px 0 5px 0;
       box-sizing: border-box;
-      flex: 0 0 33.33%;
-      height: 30px;
-      margin-bottom: 5px;
-      padding-right: 5px;
+      width: 50%;
+      min-height: 68px;
     }
 
     &-btn {
-      border: 1px dashed $theme-stroke-6;
-      color: $theme-stroke-2;
-      background: $theme-stroke-8;
+      color: #858c99;
       box-sizing: border-box;
       font-size: 12px;
       border-radius: 0;
@@ -82,7 +79,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       cursor: pointer;
+      transition: .15s;
 
       br {
         display: none;
@@ -94,6 +93,7 @@
     position: relative;
 
     &:hover {
+
       .zent-design-editor-add-component__mixed-btn {
         color: $theme-primary-4;
 
@@ -103,34 +103,22 @@
       }
 
       .zent-design-editor-add-component__grouped-btn {
-        background: $theme-primary-8;
         border-color: $theme-primary-5;
-        color: $theme-primary-4;
 
         &--disabled {
-          color: $theme-stroke-4;
+          color: #c8c9cc;
         }
-      }
-
-      .design-editor-add-tooltip {
-        display: block !important;
       }
     }
 
-    .design-editor-add-tooltip {
-      z-index: 10;
-      position: absolute;
-      top: -37px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #fff;
-      padding: 5px 10px;
-      border-radius: 3px;
-      max-width: 450px;
-      color: #666;
-      box-shadow: 0 0 3px #ccc;
-      white-space: nowrap;
-      display: none;
+    .design-button-icon {
+      width: 25px;
+      height: 25px;
+      margin-bottom: 5px;
+    }
+
+    .limit-count {
+      margin-top: 4px;
     }
 
     .zent-design-editor-add-component__mixed-btn--disabled {

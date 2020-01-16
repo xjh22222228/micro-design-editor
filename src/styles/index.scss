@@ -1,31 +1,37 @@
 @import "./design/variable";
 @import "./design/preview";
-@import "./design/preview-item";
 @import "./design/editor-item";
 @import "./design/preview-controller";
 @import "./design/editor-add-component";
 @import "./design/editor";
 @import "./design/alert";
+@import "./design/header";
 
 .zent-design {
   text-rendering: optimizelegibility;
   font-family: inherit;
-
-  &__item-list {
-    min-height: 430px;
-    padding-bottom: 9px;
-
-    &--full-height {
-      min-height: $preview-height;
-      padding-bottom: 0;
-    }
-  }
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  padding-top: $header-height;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row-reverse;
 
   &__add {
-    width: 210px;
-    padding-bottom: 5px;
+    width: 200px;
+    padding: 15px 0;
     position: relative;
-    border-top: 1px solid $theme-stroke-6;
+    overflow: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &--mixed {
       background: $theme-stroke-8;
@@ -53,5 +59,9 @@
     cursor: not-allowed;
     top: 0;
     left: 0;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }

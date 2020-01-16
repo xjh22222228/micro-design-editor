@@ -2,11 +2,33 @@
 @import './theme-default';
 
 .zent-design-preview {
-  border: 1px solid $theme-stroke-6;
-  min-height: $preview-height;
+  height: 100%;
   position: relative;
   user-select: none;
   display: flex;
+  flex: 1;
+
+  .design-preview-main {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 20px 15px;
+    background-color: #f7f8fa;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .zent-design__item-list {
+      width: 375px;
+      box-shadow: 0 0 14px 0 rgba(0, 0, 0, .1);
+    }
+  }
+
+  .zent-design-preview-item {
+    position: relative;
+  }
 
   .zent-design-add-component-overlay--grouped {
     background: $theme-stroke-9;

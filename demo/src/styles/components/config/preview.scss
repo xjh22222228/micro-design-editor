@@ -4,8 +4,7 @@
 
 .zent-design-component-config-preview {
   height: $preview-header-height;
-  width: $preview-width;
-  background-image: url('https://img.yzcdn.cn/public_files/2017/10/24/12e73dca6848e7977396a6fa123b9140.png');
+  background-image: url('https://img.yzcdn.cn/public_files/2019/02/11/14417a76b49dac2851efaf744f87cdb4.png');
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -24,6 +23,7 @@
     text-align: center;
     vertical-align: middle;
     color: $theme-stroke-9;
+    border-bottom: 1px solid #eee;
   }
 }
 

@@ -5,7 +5,7 @@ import { DesignEditor, ControlGroup } from '../../../../src/editor/DesignEditor'
 
 export default class WhitespaceEditor extends DesignEditor {
   render() {
-    const { value } = this.props;
+    const { value, onChange } = this.props;
 
     return (
       <div className={`zent-design-component-whitespace-editor`}>
@@ -17,7 +17,7 @@ export default class WhitespaceEditor extends DesignEditor {
             min={10}
             max={100}
             value={value.height}
-            onChange={this.onHeightChange}
+            onChange={value => onChange({ height: value })}
             withInput={false}
           />
           <span>{value.height} 像素</span>
@@ -25,8 +25,6 @@ export default class WhitespaceEditor extends DesignEditor {
       </div>
     );
   }
-
-  onHeightChange = this.onCustomInputChange('height');
 
   // 组件的类型
   static designType = 'white';

@@ -1,0 +1,15 @@
+@import "./variable";
+
+.design-edit-header {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: $header-height;
+  background: #fff;
+  border-bottom: 1px solid #ebedf0;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+}
