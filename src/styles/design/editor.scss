@@ -1,10 +1,15 @@
-@import './theme-default';
+@import "./theme-default";
+@import "./variable";
 
 $control-group-red: $theme-error-2;
 
-.design-editor-container {
-  width: 330px;
-  padding: 20px 20px 50px;
+.zent-design-editor-item {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: $editor-width;
+  padding: 80px $editor-padding 50px;
   background: #fff;
   overflow-y: auto;
 

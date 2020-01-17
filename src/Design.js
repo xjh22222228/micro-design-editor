@@ -179,7 +179,7 @@ export default class Design extends PureComponent {
   static defaultProps = {
     preview: DesignPreview,
     value: [],
-    defaultSelectedIndex: -1,
+    defaultSelectedIndex: 1,
     globalConfig: {},
     confirmUnsavedLeave: true,
     cache: false,
@@ -263,7 +263,7 @@ export default class Design extends PureComponent {
     let shouldUpdateInstanceCountMap = false;
 
     if (nextProps.value !== this.props.value) {
-      tagValuesWithUUID(nextProps.value, this.props.value);
+      tagValuesWithUUID(nextProps.value);
       shouldUpdateInstanceCountMap = true;
     }
 
@@ -931,29 +931,14 @@ export default class Design extends PureComponent {
 }
 
 // 给每个组件打上个标记
-function tagValuesWithUUID(newValues, oldValues) {
-  if (oldValues) {
-    newValues.forEach(v => {
-      const findV = oldValues.find(item => item.type === v.type);
-      if (findV) {
-        Object.setPrototypeOf(v, {
-          [UUID_KEY]: findV[UUID_KEY]
-        });
-      } else {
-        Object.setPrototypeOf(v, {
-          [UUID_KEY]: uuid()
-        });
-      }
-    });
-  } else {
-    newValues.forEach(v => {
-      if (!([UUID_KEY] in v)) {
-        Object.setPrototypeOf(v, {
-          [UUID_KEY]: uuid()
-        });
-      }
-    });
-  }
+function tagValuesWithUUID(newValues) {
+  newValues.forEach(v => {
+    if (!([UUID_KEY] in v)) {
+      Object.setPrototypeOf(v, {
+        [UUID_KEY]: uuid()
+      });
+    }
+  });
 }
 
 /**

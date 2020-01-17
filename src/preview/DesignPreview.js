@@ -12,9 +12,6 @@ import { DND_PREVIEW_CONTROLLER, DEFAULT_BACKGROUND } from './constants';
 import { ADD_COMPONENT_OVERLAY_POSITION } from '../constants';
 import { find, some, defaultTo, isFunction, get } from 'lodash';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { isEqual } from 'lodash';
-
-let __selectedValue__ = null;
 
 /**
  * DesignPreview 和 config 组件是相互关联的
@@ -58,11 +55,6 @@ class DesignPreview extends PureComponent {
     disabled: false,
     appendableComponents: [],
   };
-
-  state = {
-    // 当前选中编辑value
-    selectedValue: null
-  }
 
   previewItems = {};
   editorItems = {};
@@ -125,12 +117,6 @@ class DesignPreview extends PureComponent {
     return item.getBoundingBox();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.selectedValue || !isEqual(prevState.selectedValue, __selectedValue__)) {
-      this.setState({ selectedValue: __selectedValue__ });
-    }
-  }
-
   render() {
     const {
       components,
@@ -157,7 +143,6 @@ class DesignPreview extends PureComponent {
       globalConfig,
       disabled,
     } = this.props;
-    const { selectedValue } = this.state;
     const isComponentsGrouped = isGrouped(appendableComponents);
     const hasAppendableComponent = appendableComponents.length > 0;
 
@@ -211,15 +196,6 @@ class DesignPreview extends PureComponent {
                   const PreviewController = comp.previewController || DesignPreviewController;
                   const draggable = defaultTo(comp.dragable, true);
 
-                  if (selected) {
-                    __selectedValue__ = {
-                      id,
-                      comp,
-                      EditorItem,
-                      v
-                    };
-                  }
-
                   return (
                     <PreviewItem
                       key={id}
@@ -249,6 +225,26 @@ class DesignPreview extends PureComponent {
                         component={comp.preview}
                         previewProps={getAdditionalProps(comp.previewProps, v)}
                       />
+
+                      {selected && !showAddComponentOverlay && (
+                        <EditorItem
+                          disabled={disabled}
+                          ref={this.saveEditorItem(id)}
+                        >
+                          <comp.editor
+                            {...getAdditionalProps(comp.editorProps, v)}
+                            ref={this.saveEditor(id)}
+                            value={v}
+                            onChange={onComponentValueChange(v)}
+                            settings={settings}
+                            onSettingsChange={onSettingsChange}
+                            globalConfig={globalConfig}
+                            design={design}
+                            validation={validations[id] || {}}
+                            showError={showError}
+                          />
+                        </EditorItem>
+                      )}
 
                       {selected && showAddComponentOverlay && (
                         <DesignEditorItem
@@ -284,29 +280,6 @@ class DesignPreview extends PureComponent {
             }}
             </Droppable>
           </div>
-          
-          {/* 右侧边栏编辑区域 */}
-          {selectedValue && (
-            <div className="design-editor-container">
-              <selectedValue.EditorItem
-                disabled={disabled}
-                ref={this.saveEditorItem(selectedValue.id)}
-              >
-                <selectedValue.comp.editor
-                  {...getAdditionalProps(selectedValue.comp.editorProps, selectedValue.v)}
-                  ref={this.saveEditor(selectedValue.id)}
-                  value={selectedValue.v}
-                  onChange={onComponentValueChange(selectedValue.v)}
-                  settings={settings}
-                  onSettingsChange={onSettingsChange}
-                  globalConfig={globalConfig}
-                  design={design}
-                  validation={validations[selectedValue.id] || {}}
-                  showError={showError}
-                />
-              </selectedValue.EditorItem>
-            </div>
-          )}
         </div>
       </DragDropContext>
     );
