@@ -46,6 +46,7 @@ class Demo extends Component {
     settings: {
       previewBackground: '#fff'
     },
+    id: Date.now()
   };
 
   onChange = newValue => {
@@ -69,7 +70,8 @@ class Demo extends Component {
           "color": "#f00",
           "description": ""
         }
-      ]
+      ],
+      id: Date.now()
     });
   }
 
@@ -101,13 +103,14 @@ class Demo extends Component {
         <div className="design-page-header__go-back">返回微页面</div>
         <div>
           <Button type="primary" onClick={this.submit}>上架</Button>
-          <Button onClick={this.handleReplace}>更改</Button>
+          <Button onClick={this.handleReplace}>请求新数据</Button>
         </div>
       </div>
     );
 
     return (
       <Design
+        id={this.state.id}
         ref={this.saveDesign}
         cache
         cacheId="micro-design-editor"
@@ -121,7 +124,7 @@ class Demo extends Component {
         globalConfig={window._global}
         pageHeader={PageHeader}
       >
-        <div>Design</div>
+        <div></div>
       </Design>
     );
   }

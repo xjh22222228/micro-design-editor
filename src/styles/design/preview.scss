@@ -13,7 +13,7 @@
     flex: 1;
     justify-content: center;
     padding: 20px 0;
-    padding-right: $editor-width + $editor-padding * 2;
+    padding-right: $editor-width;
     background-color: #f7f8fa;
     overflow-y: auto;
 
@@ -23,7 +23,14 @@
 
     .zent-design__item-list {
       width: 375px;
+      height: calc(100vh - 150px);
       box-shadow: 0 0 14px 0 rgba(0, 0, 0, .1);
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 

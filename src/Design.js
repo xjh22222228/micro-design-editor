@@ -119,6 +119,8 @@ export default class Design extends PureComponent {
       })
     ).isRequired,
 
+    id: PropTypes.any,
+
     value: PropTypes.arrayOf(PropTypes.object),
 
     // Design 组件通用的全局设置
@@ -177,9 +179,10 @@ export default class Design extends PureComponent {
   };
 
   static defaultProps = {
+    id: null,
     preview: DesignPreview,
     value: [],
-    defaultSelectedIndex: 1,
+    defaultSelectedIndex: 0,
     globalConfig: {},
     confirmUnsavedLeave: true,
     cache: false,
@@ -265,8 +268,10 @@ export default class Design extends PureComponent {
     if (nextProps.value !== this.props.value) {
       tagValuesWithUUID(nextProps.value);
       shouldUpdateInstanceCountMap = true;
+    }
 
-      // 当组件刷新时重新设置选中
+    // 当组件刷新时重新设置选中
+    if (nextProps.id !== this.props.id) {
       const safeValueIndex = getSafeSelectedValueIndex(
         nextProps.defaultSelectedIndex,
         nextProps.value
@@ -380,7 +385,7 @@ export default class Design extends PureComponent {
         },
       });
     }
-  };
+  }
 
   onComponentValueChange = identity => (diff, replace = false) => {
     const { value } = this.props;

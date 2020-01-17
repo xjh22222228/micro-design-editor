@@ -28,6 +28,7 @@
     position: relative;
     overflow: hidden;
     overflow-y: auto;
+    box-shadow: 5px 0 5px 0px #eee;
 
     &::-webkit-scrollbar {
       display: none;
