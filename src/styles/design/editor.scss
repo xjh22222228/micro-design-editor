@@ -12,6 +12,7 @@ $control-group-red: $theme-error-2;
   padding: 80px $editor-padding 50px;
   background: #fff;
   overflow-y: auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 
   &::-webkit-scrollbar {
     display: none;

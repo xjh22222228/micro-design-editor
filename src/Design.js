@@ -265,6 +265,16 @@ export default class Design extends PureComponent {
     if (nextProps.value !== this.props.value) {
       tagValuesWithUUID(nextProps.value);
       shouldUpdateInstanceCountMap = true;
+
+      // 当组件刷新时重新设置选中
+      const safeValueIndex = getSafeSelectedValueIndex(
+        nextProps.defaultSelectedIndex,
+        nextProps.value
+      );
+      const selectedValue = nextProps.value[safeValueIndex];
+      this.setState({
+        selectedUUID: this.getUUIDFromValue(selectedValue)
+      });
     }
 
     if (nextProps.components !== this.props.components) {
