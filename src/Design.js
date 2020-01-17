@@ -263,7 +263,7 @@ export default class Design extends PureComponent {
     let shouldUpdateInstanceCountMap = false;
 
     if (nextProps.value !== this.props.value) {
-      tagValuesWithUUID(nextProps.value);
+      tagValuesWithUUID(nextProps.value, this.props.value);
       shouldUpdateInstanceCountMap = true;
     }
 
@@ -930,14 +930,30 @@ export default class Design extends PureComponent {
   }
 }
 
-function tagValuesWithUUID(values) {
-  values.forEach(v => {
-    if (!([UUID_KEY] in v)) {
-      Object.setPrototypeOf(v, {
-        [UUID_KEY]: uuid()
-      });
-    }
-  });
+// 给每个组件打上个标记
+function tagValuesWithUUID(newValues, oldValues) {
+  if (oldValues) {
+    newValues.forEach(v => {
+      const findV = oldValues.find(item => item.type === v.type);
+      if (findV) {
+        Object.setPrototypeOf(v, {
+          [UUID_KEY]: findV[UUID_KEY]
+        });
+      } else {
+        Object.setPrototypeOf(v, {
+          [UUID_KEY]: uuid()
+        });
+      }
+    });
+  } else {
+    newValues.forEach(v => {
+      if (!([UUID_KEY] in v)) {
+        Object.setPrototypeOf(v, {
+          [UUID_KEY]: uuid()
+        });
+      }
+    });
+  }
 }
 
 /**

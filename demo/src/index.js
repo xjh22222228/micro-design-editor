@@ -41,7 +41,7 @@ class Demo extends Component {
       {
         type: configConf.type,
         ...ConfigEditor.getInitialValue(),
-      },
+      }
     ],
     settings: {
       previewBackground: '#fff'
@@ -60,14 +60,48 @@ class Demo extends Component {
     });
   };
 
-  render() {
+  handleReplace = () => {
+    this.setState({
+      value: [
+        {
+          "type": "config",
+          "title": "刷新数据",
+          "color": "#f00",
+          "description": ""
+        }
+      ]
+    });
+  }
 
+  saveDesign = instance => {
+    this.design = instance && instance.getDecoratedComponentInstance();
+  };
+
+  triggerDesignValidation() {
+    return this.design.validate();
+  }
+
+  submit = () => {
+    this.triggerDesignValidation()
+    .then(() => {
+      const data = this.state.value;
+      console.log(JSON.stringify(data, null, 2));
+      // submit this.state.value to server
+      this.design.markAsSaved();
+      alert('保存成功');
+    })
+    .catch(validations => {
+      console.log(validations);
+    });
+  }
+
+  render() {
     const PageHeader = (
       <div className="design-page-header">
         <div className="design-page-header__go-back">返回微页面</div>
         <div>
           <Button type="primary" onClick={this.submit}>上架</Button>
-          <Button onClick={this.notImplemented}>保存</Button>
+          <Button onClick={this.handleReplace}>更改</Button>
         </div>
       </div>
     );
@@ -91,32 +125,6 @@ class Demo extends Component {
       </Design>
     );
   }
-
-  notImplemented() {
-    alert('仅作为演示，功能未开发');
-  }
-
-  saveDesign = instance => {
-    this.design = instance && instance.getDecoratedComponentInstance();
-  };
-
-  triggerDesignValidation() {
-    return this.design.validate();
-  }
-
-  submit = () => {
-    this.triggerDesignValidation()
-      .then(() => {
-        const data = this.state.value;
-        console.log(JSON.stringify(data, null, 2));
-        // submit this.state.value to server
-        this.design.markAsSaved();
-        alert('保存成功');
-      })
-      .catch(validations => {
-        console.log(validations);
-      });
-  };
 }
 
 render(<Demo />, document.querySelector('#demo'));
