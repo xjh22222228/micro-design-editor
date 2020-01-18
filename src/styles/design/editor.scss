@@ -3,23 +3,6 @@
 
 $control-group-red: $theme-error-2;
 
-.zent-design-editor-item {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: $editor-width;
-  padding: 80px 20px 50px;
-  background: #fff;
-  overflow-y: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-  box-sizing: border-box;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
 .zent-design-editor__control-group {
   &:not(:last-child) {
     margin-bottom: 20px;
